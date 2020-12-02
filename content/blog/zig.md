@@ -3,13 +3,6 @@ title = "Zig notes"
 date = 2020-11-25
 +++
 
-# Zig notes:
-
-
-## Missing:
-* Unions
-* Tagged unions (which is way more fun)
-
 `*val` is a pointer to `val`.
 `val.*` is dereferencing `val`;
 

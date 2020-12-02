@@ -1,0 +1,48 @@
+html,body {
+    background: #393e41;
+    color: #f6f7eb;
+}
+
+h1,h2 {
+    margin:0;
+}
+
+h1 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.blog-head {
+    display: flex;
+    align-items: flex-start;
+    
+    h1 {
+        border-left: 2px solid white;
+        margin: 0;
+    }
+
+    .date {
+        width: 25px;
+        transform: rotate(90deg);
+        font-family: 'Oswald';
+        font-weight: 400;
+        letter-spacing: 0.21rem;
+        margin-top: 0.4rem;
+    }
+}
+
+section {
+    padding: 0 10rem;
+
+    @media only screen and (max-width: 600px) {
+        padding: 0;
+    }
+
+}
