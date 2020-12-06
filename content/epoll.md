@@ -96,7 +96,7 @@ let mut buffer = [0u8;10];
 loop {
     let event_count = libc::epoll_wait(
         epoll_fd,               // epoll instance
-        events.as_mut_ptr(),    // pointer to events array
+        events.as_mut_ptr(),    // mutable pointer to events
         events.len() as i32,
         1_000,                  // timeout in milliseconds
     );
