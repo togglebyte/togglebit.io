@@ -4,14 +4,13 @@ body {
 }
 
 h1 {
-    font-size: 8.2rem;
+    @media only screen and (min-width: 720px) {
+        font-size: 8.2rem;
+    }
 }
 
 h1,h2 {
     font-family: 'Open Sans';
-    // font-family: 'Comfortaa';
-    // font-family: 'Cabin';
-    // font-weight: 100;
 }
 
 pre {
@@ -22,3 +21,6 @@ pre > code {
     font-family: hack;
 }
 
+small {
+    font-size: 0.8rem;
+}

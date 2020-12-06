@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ section.title }}{% endblock title %}
+{% block content %}
+<section>
+    <h1 class="blog-title">
+        {{ section.title }}
+    </h1>
+</section>
+
+<section>
+    {{ section.content|safe }}
+
+    <ul class="note-list">
+        {% for page in section.pages %}
+        <li>
+            <a href="{{ page.permalink|safe }}">{{ page.title }}</a>
+            <small>{{ page.date }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock content %}

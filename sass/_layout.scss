@@ -24,17 +24,24 @@ a {
     align-items: flex-start;
     
     h1 {
-        border-left: 2px solid white;
-        margin: 0;
+        border-left: none;
+        @media only screen and (min-width: 600px) {
+            border-left: 2px solid white;
+            margin: 0;
+        }
     }
 
     .date {
-        width: 25px;
-        transform: rotate(90deg);
-        font-family: 'Oswald';
-        font-weight: 400;
-        letter-spacing: 0.21rem;
-        margin-top: 0.4rem;
+        display: none;
+        @media only screen and (min-width: 600px) {
+            display: inherit;
+            width: 25px;
+            transform: rotate(90deg);
+            font-family: 'Oswald';
+            font-weight: 400;
+            letter-spacing: 0.21rem;
+            margin-top: 0.4rem;
+        }
     }
 }
 
@@ -45,4 +52,49 @@ section {
         padding: 0;
     }
 
+}
+
+code {
+    background: #2b303b;
+    border: 1px solid #825f5f;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+pre > code {
+    background: #2b303b;
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: inherit;
+}
+
+.note-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    
+    li:nth-child(odd) {
+        background: #2b303b;
+    }
+
+    li {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        padding: 0.5rem;
+    }
+
+    a, small { display: flex; }
+
+    a {
+        justify-content: flex-start;
+        flex: 1;
+    }
+
+    small {
+        justify-content: flex-end;
+    }
 }

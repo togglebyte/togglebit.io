@@ -3,8 +3,8 @@ title = "Zig notes"
 date = 2020-11-25
 +++
 
-`*val` is a pointer to `val`.
-`val.*` is dereferencing `val`;
+* `*val` is a pointer to `val`.
+* `val.*` is dereferencing `val`;
 
 Print formatting: 
 * `"{}"` will print string value.
