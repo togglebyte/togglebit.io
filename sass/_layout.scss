@@ -15,8 +15,12 @@ a {
     text-decoration: none;
     color: white;
     &:hover {
-        text-decoration: underline;
+        color: #aaf;
     }
+}
+
+.blog-body {
+    a { text-decoration: underline; }
 }
 
 .blog-head {
@@ -46,6 +50,7 @@ a {
     }
 }
 
+
 section {
     padding: 0 10rem;
 
@@ -53,6 +58,13 @@ section {
         padding: 0;
     }
 
+}
+
+// -----------------------------------------------------------------------------
+//     - Code and pre -
+// -----------------------------------------------------------------------------
+pre {
+    overflow: auto;
 }
 
 code {
@@ -100,10 +112,15 @@ pre > code {
     }
 }
 
+// -----------------------------------------------------------------------------
+//     - Page -
+// -----------------------------------------------------------------------------
 .header {
     @media only screen and (min-width: 600px) {
         display: flex;
     }
+
+    a { text-decoration: none; }
 
     ul {
         list-style-type: none;

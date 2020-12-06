@@ -1,0 +1,145 @@
++++
+title = "Epoll notes"
+date = 2020-12-06
++++
+
+Epoll can be used directly via [libc](https://crates.io/crates/libc).
+
+## Notes
+
+`int_c = i32`
+
+## Creating and closing an Epoll instance
+
+Note that this is using `epoll_create1` instead of `epoll_create`.
+`epoll_create` takes a size argument, however this is ignored by the kernel
+(unless you have a kernel older than 2.6.8).
+
+`epoll_create1` takes a flag, which for now can be either `0` or
+`libc::EPOLL_CLOEXEC`.
+
+
+### Create
+```rust
+let res = libc::epoll_create1(flags);
+
+if res < 0 {
+    return Err(
+        io::Error::from_raw_os_error(-fd)
+    );
+}
+
+let file_descriptor = res;
+```
+
+### Close
+```rust
+let res = libc::close(fd);
+
+if res < 0 {
+    return Err(
+        io::Error::from_raw_os_error(-res)
+    );
+}
+```
+
+## Registering an event
+
+Events can be added (modified or removed) with the system call
+`libc::epoll_ctl`.
+
+Adding an entry to the interest list requires the file descriptor for the epoll
+instance, the operator `EPOLL_CTL_ADD`, the file descriptor associated with the
+interest (e.g a socket, stdin etc.) as well as an `epoll_event`.
+
+The `epoll_event` has two fields: 
+* `events` tells epoll what events to listen for
+* `u64` is a user defined value that will be returned with the event.
+
+```rust
+let mut event = libc::epoll_event {
+    events: libc::EPOLLIN as _,
+    u64: 0,                 // User defined value associated with the entry
+};
+
+let res = libc::epoll_ctl(
+    epoll_fd,               // epoll instance
+    libc::EPOLL_CTL_ADD,    // Operation, in this case Add
+    fd,                     // file descriptor (e.g a socket, stdin etc.)
+    &mut event as *mut libc::epoll_event,
+);
+```
+
+## Wait for events
+
+Setting `timeout` to `-1` will block until an event is received. 
+
+Previous code block registered a read interest for `stdin`, which is assumed
+here.
+
+```rust
+use std::os::unix::io::FromRawFd;
+use std::io::Read;
+use std::fs::File;
+
+// Init the vec with some events. It doesn't matter what we put here
+// as it will be overwritten by epoll.
+let mut events = vec![
+    libc::epoll_event { event: 0, u64: 0 },
+    libc::epoll_event { event: 0, u64: 0 },
+    libc::epoll_event { event: 0, u64: 0 },
+];
+
+let mut stdin = File::from_raw_fd(0); // see previous code block
+let mut buffer = [0u8;10];
+
+loop {
+    let event_count = libc::epoll_wait(
+        epoll_fd,               // epoll instance
+        events.as_mut_ptr(),    // pointer to events array
+        events.len() as i32,
+        1_000,                  // timeout in milliseconds
+    );
+    
+    for i in 0..event_count as usize {
+        let event = &events[i];
+        let num_bytes_read = stdin.read(&mut buffer).unwrap();
+        let data = &buffer[..num_bytes_read];
+    }
+}
+```
+
+## Edge triggered and one-shot events
+
+When requesting a one-shot event, epoll will not notify of any subsequent
+events after being notified of one, unless the interest entry is updated:
+
+```rust
+libc::epoll_ctl(
+    epoll_fd,
+    libc::EPOLL_CTL_MOD,    // Re-register interest
+    0,                      // stdin
+    &mut event as &mut libc::epoll_event,
+)
+```
+
+## Events
+
+TODO: finish this. 
+See `man epoll_ctl`
+
+```rust
+libc::EPOLLET           // Level triggered
+libc::EPOLLIN           // Read available
+libc::EPOLLOUT          // Write available
+libc::EPOLLPRI          // Urgent read
+libc::EPOLLERR          // Error on associated file descriptor
+libc::EPOLLHUP          // Hang up on the file descriptor
+libc::EPOLLRDHUP        // Socket closed or writing half shut down
+libc::EPOLLWAKEUP       // 
+libc::EPOLLONESHOT      // 
+libc::EPOLLEXCLUSIVE    // 
+```
+
+## EventFd
+See `man eventfd` and `libc::eventfd`
