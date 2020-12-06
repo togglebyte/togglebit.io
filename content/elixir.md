@@ -1,0 +1,58 @@
++++
+title = "Elixir notes"
+date = 2020-12-01
++++
+
+* Creating a new project: `mix new <name>`
+* Running tests: `mix test`
+
+## Modules
+Defining a module:
+```elixir 
+defmodule ModName do
+    def some_function() do
+    end
+end
+
+ModName.some_function()
+```
+
+## Functions
+
+* A function has to belong to a module.
+* A function can have the same as another function but with different number of
+  arguments (useful for recursion)
+
+Making a private function use `defp`
+```elixir
+defmodule Mod do 
+    defp private_func() do
+        # I am a private function
+    end
+    
+    def func() do
+        # I am a function
+    end
+end
+```
+
+## Recursive functions
+TODO: this is not complete.
+This needs to be confirmed and tested
+
+```elixir
+def sum(list) do
+    sum(list, 0)
+end
+
+def sum([], total) do
+    total
+end
+
+def sum([h | tail], total) do
+    new_total = h + total
+    sum(tail, new_total)
+end
+
+```
+

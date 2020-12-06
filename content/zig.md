@@ -158,9 +158,13 @@ var alt_array: [2]u8 = .{1, 2};
 
 ## Structs
 
+Notes on struct declaration:
+`var` / `const` should be terminated with semicolon,
+whereas fields should have a comma.
 
 ```zig
 const AStruct = struct {
+    const Self = @Type(); // semicolon because it's not a field
     val: u32,
 }
 
@@ -205,4 +209,69 @@ const Taggy = union(enum) {
     B: [2]u8
 }
 
+```
+
+## Modules
+
+Creating a module is a case of adding a file and importing said file:
+```zig
+// mymod.zig
+pub const VALUE: u32 = 1;
+```
+
+```zig
+// main.zig
+const module_name = @import("mymod.zig");
+const other_module = @import("dir/mymod.zig");
+
+pub fn main() void {
+    const value = module_name.VALUE; 
+}
+```
+
+## External modules
+
+Using an external Rust libary:
+
+Modify the **build.zig** and call the following functions
+on the `exe` object:
+
+
+```zig
+// main.zig
+extern fn greet() void;
+
+pub fn main() anyerror!void {
+    greet();
+}
+```
+
+```zig
+// build.zig
+const exe = b.addExecutable("ffibits", "src/main.zig");
+//... Everything  else
+exe.linkSystemLibrary("c"); // Includes libc
+exe.linkSystemLibrary("myname"); // Name of the library
+exe.addLibPath("./myname/target/release/"); // Add the path to where the library is
+// ...
+exe.install();
+```
+
+This code makes the assumption that there will be a file in
+"./myname/target/release/" named "libmyname.so" or "libmyname.a" (on linux)
+
+**NOTE**: At the time of writing there is presumably a bug: 
+When rebuilding the library it isn't updated in the Zig code until you touch
+some of the Zig code using it.
+
+Optionally one can omit `exe.linkSystemLibrary("myname");`
+if you change:
+```zig
+extern fn greet() void;
+```
+
+to
+
+```zig
+extern "myname" fn greet() void;
 ```
