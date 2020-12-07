@@ -129,7 +129,7 @@ TODO: finish this.
 See `man epoll_ctl`
 
 ```rust
-libc::EPOLLET           // Level triggered
+libc::EPOLLET           // Edge triggered
 libc::EPOLLIN           // Read available
 libc::EPOLLOUT          // Write available
 libc::EPOLLPRI          // Urgent read
