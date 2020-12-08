@@ -49,16 +49,62 @@ Example removing a file descriptor.
 TODO: finish this. 
 See `man epoll_ctl`
 
+Edge triggered: only triggers events when the underlying file descriptor
+changes.
+Without ONESHOT multiple events might still be triggered for the same file
+descriptor.
+
 ```rust
-libc::EPOLLET           // Edge triggered
-libc::EPOLLIN           // Read available
-libc::EPOLLOUT          // Write available
-libc::EPOLLPRI          // Urgent read
-libc::EPOLLERR          // Error on associated file descriptor
-libc::EPOLLHUP          // Hang up on the file descriptor
-libc::EPOLLRDHUP        // Socket closed or writing half shut down
-libc::EPOLLWAKEUP       // 
-libc::EPOLLONESHOT      // 
+libc::EPOLLET
+```
+
+When passed to epoll, the selected file descriptor is registered for read events.
+When received from epoll through `epoll_wait` the file descriptor can be read from.
+
+```rust
+libc::EPOLLIN
+```
+
+When passed to epoll, the selected file descriptor is registered for write events.
+When received from epoll through `epoll_wait` the file descriptor can be written to.
+
+```rust
+libc::EPOLLOUT
+```
+
+Urgent read
+```rust
+libc::EPOLLPRI
+```
+
+Error on the associated file descriptor.
+This is set by epoll. 
+```rust
+libc::EPOLLERR
+```
+
+Hang up the file descriptor.
+```rust
+libc::EPOLLHUP
+```
+
+Socket closed or writing half shut down.
+Useful to be notified whether the socket was closed or not: `EPOLLIN | EPOLLRDHUP`
+```rust
+libc::EPOLLRDHUP
+```
+
+```rust
+libc::EPOLLWAKEUP       // Prevents system for sleep (what is a system here?)
+```
+
+```rust
+libc::EPOLLONESHOT      // Without one-shot it's possible to receive multiple events
+```
+
+Looks like it will only wake up the epoll file descriptor where this event's
+file descriptor was registered, if the event was registered with `EPOLLEXCLUSIVE`.
+```rust
 libc::EPOLLEXCLUSIVE    // 
 ```
 
