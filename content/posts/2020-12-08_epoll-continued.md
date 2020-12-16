@@ -40,7 +40,7 @@ Example removing a file descriptor.
         epoll_fd,
         libc::EPOLL_CTL_DEL
         fd, // removes this fd
-        ptr::null(), // event is not required since kernel 2.6.9
+        ptr::null_mut(), // event is not required since kernel 2.6.9
     );
 ```
 

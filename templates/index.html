@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ section.title }}{% endblock title %}
+{% block content %}
+<section class="header">
+    <h1 class="blog-title">
+        Togglesite
+    </h1>
+    <ul>
+        <li><a href="https://github.com/togglebyte/" target="_blank">Github</a></li>
+        <li><a href="https://discord.gg/qtyDMat" target="_blank">Discord</a></li>
+        <li><a href="https://www.twitch.tv/togglebit/" target="_blank">Twitch</a></li>
+    </ul>
+</section>
+
+<section>
+    {% set posty = get_section(path="posts/_index.md") %}
+
+    {% set page_limit = 2 %}
+    {% for page in posty.pages %}
+        {% if loop.index <= page_limit %}
+            <a href="{{ page.path }}">
+                {{ page.title }}
+                {{ page.date }}
+            </a>
+        {% endif %}
+    {% endfor %}
+</section>
+
+<section>
+    {% for sla in section.pages %}
+    <a href="{{ sla.path }}">
+        {{ sla.title }}
+    </a>
+    {% endfor %}
+</section>
+
+{% endblock content %}
