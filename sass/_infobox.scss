@@ -1,0 +1,26 @@
+.info-box {
+    background: #2b303b;
+    border: 1px dashed #825f5f;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+
+    a, span, desc { display: block }
+
+    a:before { 
+        content: "url:";
+        color: #88A;
+    }
+
+    span:before {
+        content: "- ";
+    }
+ 
+    desc:before {
+        content: "description:";
+        color: #88A;
+    }
+    
+}

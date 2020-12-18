@@ -13,26 +13,21 @@
     </ul>
 </section>
 
-<section>
-    {% set posty = get_section(path="posts/_index.md") %}
-
-    {% set page_limit = 2 %}
-    {% for page in posty.pages %}
-        {% if loop.index <= page_limit %}
-            <a href="{{ page.path }}">
-                {{ page.title }}
-                {{ page.date }}
-            </a>
-        {% endif %}
-    {% endfor %}
-</section>
+<!-- <section> -->
+<!--     <a href="/useful/">Useful bits</a> | --> 
+<!--     <a href="/links/">Links</a> --> 
+<!-- </section> -->
 
 <section>
-    {% for sla in section.pages %}
-    <a href="{{ sla.path }}">
-        {{ sla.title }}
-    </a>
+    <ul class="note-list">
+    {% set posts = get_section(path="posts/_index.md") %}
+    {% for page in posts.pages %}
+        <li>
+            <a href="{{ page.path|safe }}">{{ page.title }}</a>
+            <small>{{ page.date }}</small>
+        </li>
     {% endfor %}
+    </ul>
 </section>
 
 {% endblock content %}
