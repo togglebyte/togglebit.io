@@ -32,7 +32,7 @@ a {
     align-items: flex-start;
     
     @media only screen and (min-width: 600px) {
-        height: 11rem;
+        min-height: 11rem;
     }
 
     h1 {
