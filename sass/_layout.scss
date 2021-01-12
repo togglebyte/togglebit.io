@@ -31,12 +31,16 @@ a {
     display: flex;
     align-items: flex-start;
     
+    @media only screen and (min-width: 600px) {
+        height: 11rem;
+    }
+
     h1 {
         border-left: none;
         @media only screen and (min-width: 600px) {
             border-left: 2px solid white;
             margin: 0 0 0 1rem;
-            padding: 0 0 0 1rem;
+            padding: 1rem 0 1rem 1rem;
         }
     }
 

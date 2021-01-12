@@ -5,12 +5,12 @@ date = 2021-01-11
 
 If you are learning to program from scratch.
 
-# Python
+## Python
 
-# Rust
+## Rust
 * [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)
 
-## Starter projects:
+### Starter projects:
 
 * [https://github.com/karan/Projects](https://github.com/karan/Projects)
 * [https://github.com/tuvtran/project-based-learning](https://github.com/tuvtran/project-based-learning)
