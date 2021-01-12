@@ -8,7 +8,7 @@ If you are learning to program from scratch.
 # Python
 
 # Rust
-* (https://doc.rust-lang.org/stable/book/)[https://doc.rust-lang.org/stable/book/]
+* [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)
 
 ## Starter projects:
 
