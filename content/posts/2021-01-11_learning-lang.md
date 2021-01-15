@@ -10,6 +10,7 @@ If you are learning to program from scratch.
 
 ## Rust
 * [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)
+* https://learning-rust.github.io/
 
 ### Starter projects:
 
