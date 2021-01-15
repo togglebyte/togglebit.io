@@ -6,6 +6,7 @@ date = 2021-01-11
 If you are learning to program from scratch.
 
 ## Python
+* Nothing so far
 
 ## Rust
 * [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)
