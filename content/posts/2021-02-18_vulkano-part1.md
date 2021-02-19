@@ -168,7 +168,10 @@ void main() {
 "
     }
 }
+```
 
+
+```rust
 struct Data { val: u32 }
 struct MoreData { val: u32 }
 
