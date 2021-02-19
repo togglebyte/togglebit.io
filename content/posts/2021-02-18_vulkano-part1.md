@@ -135,8 +135,102 @@ finish
 let data = *dst.read().unwrap();
 ```
 
+## Compute shader
+
+A shader is a program that runs on the gpu. Shaders are written in GLSL and
+compiled to SPIR-V using `vulkano-shaders` in this instance.
+
+The following shader has two descriptors: `Data` and `MoreData`.
+The `binding` represents the order the buffers was added.
+
+```rust
+mod cs {
+    vulkano_shaders::shader! {
+        ty: "compute",
+        src: "
+# version 450
+
+layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+
+layout(set = 0, binding = 0) buffer Data {
+    uint value;
+} data;
+
+layout(set = 0, binding = 1) buffer MoreData {
+    uint value;
+} more_data;
+
+void main() {
+    data.value = 123;
+    mode_data.value = 234;
+}
+
+"
+    }
+}
+
+struct Data { val: u32 }
+struct MoreData { val: u32 }
+
+fn main() {
+    // .. code from earlier
+    use vulkan::pipeline::ComputePipeline;
+    use vulkan::descriptor::PipelineLayuotAbstract;
+    use vulkan::descriptor::descriptor_set::PersistentDescriptorSet;
+    
+    let data_buffer = CpuAccessibleBuffer::from_data(
+        device.clone(),
+        BufferUsage::all(),
+        false, // don't cache data on the cpu
+        Data { val: 0 }
+    );
+    
+    let more_data_buffer = CpuAccessibleBuffer::from_data(
+        device.clone(),
+        BufferUsage::all(),
+        false, // don't cache data on the cpu
+        MoreData { val: 0 }
+    );
+    
+    // load shader module
+    let shader = cs::Shader::load(device.clone()).unwrap();
+    
+    let pipeline = Arc::new(ComputePipeline::new(
+        device.clone(),
+        &shader.main_entry_point(),
+        &(),    // SpecializationConstants
+        None,   // Cache
+    ));
+    
+    let layout = compute_pipeline.layout().descriptor_set_layout(0).unwrap();
+    
+    // note that all sets will be present at the time of execution (of the shader)
+    // the set in the compute shader in this example is zero
+    let set = Arc::new(
+        PersistentDescriptorSet::start(layout.clone())
+            .add_buffer(data_buffer.clone()).unwrap()
+            .add_buffer(more_data_buffer.clone()).unwrap()
+            .build().unwrap()
+    );
+    
+    let workgrup = [1, 1, 1]; // x, y and z
+    let builder = AutoCommandBufferBuilder::new(device.clone(), queue.family()).unwrap();
+    builder.dispatch(workgroup, pipeline.clone(), set.clone(), ()).unwrap();
+    let command_buffer = builder.build().unwrap();
+    
+    // execute compute shader
+    let result = command_buffer.execute(queue.clone()).unwrap();
+    result.then_signal_fence_and_flush().unwrap().wait(None).unwrap();
+    
+    // access the data
+    let buffer_data = &*buffer.read().unwrap();
+}
+
+```
+
+
 ### Sources
 
-* [http://vulkano.rs/guide/](http://vulkano.rs/guide/)
+* [http://vulkano.rs/guide/introduction](http://vulkano.rs/guide/introduction)
 * [https://docs.rs/vulkano/0.20.0](https://docs.rs/vulkano/0.20.0)
 * [https://vulkan-tutorial.com/](https://vulkan-tutorial.com/)
