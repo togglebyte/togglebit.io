@@ -134,3 +134,9 @@ finish
 // read out of the dst buffer
 let data = *dst.read().unwrap();
 ```
+
+### Sources
+
+* [http://vulkano.rs/guide/](http://vulkano.rs/guide/)
+* [https://docs.rs/vulkano/0.20.0](https://docs.rs/vulkano/0.20.0)
+* [https://vulkan-tutorial.com/](https://vulkan-tutorial.com/)
