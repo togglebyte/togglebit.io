@@ -16,6 +16,9 @@ If you are learning to program from scratch.
 ### Watching 
 
 * [https://www.youtube.com/channel/UCpeX4D-ArTrsqvhLapAHprQ/videos](https://www.youtube.com/channel/UCpeX4D-ArTrsqvhLapAHprQ/videos)
+* [Curst of
+  Rust](https://www.youtube.com/watch?v=rAl-9HwD858&list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa)
+  Jon Gjengset
 
 ### Starter projects:
 
