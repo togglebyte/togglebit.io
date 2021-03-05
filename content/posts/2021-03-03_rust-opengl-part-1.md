@@ -5,7 +5,11 @@ date = 2021-03-03
 
 ## Note
 
-Validate shaders before assuming a bug elsewhere...
+Validate shaders before assuming a bug elsewhere:
+
+```
+glslangValidator myshader.frag
+```
 
 ## Overview
 
@@ -84,6 +88,12 @@ glBindBuffer(GL_ARRAY_BUFFER, vbo);
 Finally the vertex data can be stored in the buffer:
 
 ```rust
+const VERTICES: [f32; 6] = [
+    -0.5, -0.5, 0.0,
+    -0.5, 0.5,  0.0,
+     0.5, -0.5, 0.0,
+];
+
 glBufferData(
     GL_ARRAY_BUFFER,
     size_of_val(&VERTICES) as isize,
@@ -128,6 +138,125 @@ void main() {
     ci = colours;
 }
 ```
+
+
+## Shaders
+
+Shaders are small program that run on the GPU.
+
+To be able to display anything we need at least a vertex shader and a fragment
+shader.
+
+A simple vertex shader just sets the `gl_Position` to an x, y, z (and w) coordinate.
+
+To add shaders we need to do the following:
+
+1. Have some shader source.
+2. Get an id for the shader.
+3. Set the shader source and compile it.
+4. Create a "shader program".
+
+Shaders does not have to be created whilst either a VBO or VAO is bound.
+
+Note that the following code creates a vertex shader. For a fragment shader
+change the word **vertex** to **fragment** everywhere, and for the actual shader
+source see further down.
+
+```rust
+// Write the shader
+let vertex_shader_src = br#"
+#version 330 core
+
+layout (location = 0) in vec3 position;
+
+void main() {
+    gl_Position = vec4(position, 1.0);
+}
+"#;
+```
+
+To create an empty shader to associate the shader source with:
+
+```rust
+let vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+```
+
+Finally set the source and compile it:
+
+```rust
+// Set the source
+glShaderSource(
+    vertex_shader,                      // shader id
+    1,                                  // number of shaders
+    &vertex_shader_src.as_ptr().cast(), // the shader source
+    &(vertex_shader_src.len() as i32)   // the length of the source
+);
+
+// Compile the shader
+glCompileShader(vertex_shader);
+```
+
+To the same thing for the fragment shader, except replace the word vertex with
+fragment. 
+
+The shader source for the fragment shader looks slightly different:
+
+```sl
+# version 330 core
+
+out vec4 colour;
+
+void main() {
+    // return the colour blue
+    colour = vec4(0.0, 0.0, 1.0, 1.0);
+}
+```
+
+Once both shaders are compiled, create a shader program.
+
+```rust
+// Create an empty program
+let shader_program = glCreateProgram();
+
+// Attach the vertex and fragment shaders
+// to the program
+glAttachShaders(shader_program, vertex_shader);
+glAttachShaders(shader_program, fragment_shader);
+
+// Link the program
+glLinkProgram(shader_program);
+```
+
+## Shader logging (not required)
+
+While this is not required it can be very helpful.
+This can be done when compiling a shader, as well as linking the shader program.
+
+```rust
+let mut success = 0;
+glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &mut success); // query shader object
+
+if success == 0 { // anything but zero qualifies as success
+    let mut log: Vec<u8> = Vec::with_capacity(1024); // should be enough
+    let mut len = 0;
+    
+    glGetShaderInfoLog(
+        vertex_shader,
+        log.capacity() as i32,
+        &mut len,
+        log.as_mut_ptr(),
+    );
+    unsafe { log.set_len(len) };
+    let log = std::str::from_utf8(&log).unwrap();
+    eprintln!("Error: {}", log);
+}
+```
+
+The same applies to the status of the shader program, with some minor
+modifications:
+
+Instead of `glGetShaderInfoLog` call `glGetProgramInfoLog` with the
+`shader_program` as the first argument rather than `vertex_buffer`.
 
 
 ## Resources:
