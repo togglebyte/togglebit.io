@@ -3,7 +3,19 @@ title = "Vulkano: setup"
 date = 2021-02-18
 +++
 
-## Setup:
+This are incomplete notes.
+
+## Overview
+
+Buffers are used to read and write data.
+
+Device is channel to a physical device (gpu).
+
+Command buffer executes all commands in one go, for efficiency.
+
+
+
+## Setup
 
 ```
 [dependencies]
