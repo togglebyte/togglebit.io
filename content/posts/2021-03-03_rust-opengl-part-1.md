@@ -1,5 +1,5 @@
 +++
-title = "Learning OpenGL with Rust part 1"
+title = "Learning OpenGL with Rust part 1 (setup)"
 date = 2021-03-03
 +++
 
@@ -14,7 +14,7 @@ glslangValidator myshader.frag
 ## Overview
 
 This is written around [gl33](https://crates.io/crates/gl33) and
-[winit](https://crates.io/crates/winit).
+[glutin](https://crates.io/crates/glutin).
 
 OpenGL coordinates places 0,0 at the bottom left.
 
