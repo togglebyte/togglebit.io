@@ -1,5 +1,5 @@
 +++
-title = "Rust OpenGL shaders"
+title = "Learning OpenGL with Rust part 2 (shaders)"
 date = 2021-03-08
 +++
 
@@ -55,6 +55,7 @@ Setting the value of the uniform is done in Rust, using `glUniform<type>`.
 let red = 1.0;
 let uniform_loc = glGetUniformLocation(shader_program, "colourUniform\0".as_ptr())
 glUniform4f(uniform_loc, red, 0.0, 0.0, 1.0);
-``` => "",
+```
+
 If the uniform location comes back as `-1` it means it wasn't found.
 This could be the result of a typo or the fact that the uniform is ever used.
