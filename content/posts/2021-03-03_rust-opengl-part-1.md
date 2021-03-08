@@ -36,6 +36,7 @@ let window_builder = WindowBuilder::new().with_title("a window title");
 // Set this to OpenGL 3.3
 let context = ContextBuilder::new()
     .with_gl(GlRequest::Specific(Api::OpenGl, (3, 3)))
+    .with_vsync(true)
     .build_windowed(window_builder, &event_loop)
     .unwrap();
 
@@ -258,6 +259,15 @@ modifications:
 Instead of `glGetShaderInfoLog` call `glGetProgramInfoLog` with the
 `shader_program` as the first argument rather than `vertex_buffer`.
 
+## Summary
+
+1. [ ]  Create a window
+2. [ ]  Create an OpenGL context
+3. [ ]  Create vertex array object
+4. [ ]  Create at least one vertex buffer object
+5. [ ]  Attach attributes to translate vertex data 
+   for the shaders
+6. [ ] Draw and swap buffers
 
 ## Resources:
 
