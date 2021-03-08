@@ -76,6 +76,8 @@ glBindVertexArray(vao);
 ## Vertex buffer object
 
 The vertex buffer object stores the vertices.
+`glBufferData` can only be called once on a vbo.
+Calling it twice will overwrite the previous data.
 
 Before any operation can be performed on the vertices, a VBO has to be created
 and bound:
