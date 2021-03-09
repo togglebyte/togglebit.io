@@ -58,4 +58,4 @@ glUniform4f(uniform_loc, red, 0.0, 0.0, 1.0);
 ```
 
 If the uniform location comes back as `-1` it means it wasn't found.
-This could be the result of a typo or the fact that the uniform is ever used.
+This could be the result of a typo or the fact that the uniform is never used.
