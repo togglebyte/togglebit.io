@@ -19,6 +19,9 @@ If you are learning to program from scratch.
 * [Crust of
   Rust](https://www.youtube.com/watch?v=rAl-9HwD858&list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa)
   Jon Gjengset
+*
+[https://www.youtube.com/channel/UCmBgC0JN41HjyjAXfkdkp-Q](https://www.youtube.com/channel/UCmBgC0JN41HjyjAXfkdkp-Q)
+Doug Milford (lifetimes, 3d graphics)
 
 ### Starter projects:
 
