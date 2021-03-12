@@ -52,3 +52,50 @@ A translation matrix will move the object.
 │ 0 0 0 1 │
 └         ┘
 ```
+
+## Coordinates
+
+NDC = Normalized Device Coordinates (-1,-1 to 1,1)
+
+
+## View matrix and projection matrix
+
+The view matrix is where in the world the user is looking.
+A view matrix can be considered a point in space.
+
+The view and projection matrix together could be thought of as an inverse
+camera, where the view matrix is the cameras location in space, and the
+projection matrix represents the zoom / focal length.
+
+
+## Putting this together
+
+To get the model matrix we multiply the world matrix with the local coordinates.
+However since the local coordinates exists on the mesh as its vertices we don't
+need to do that step in Rust.
+
+To render a specific portion of the world, move the `view` matrix.
+The coordinates to move the view matrix should be inverse.
+So to move the view 10 units to the right, add -10 to the x axis.
+
+```rust
+use nalgebra::{Vector, Matrix4};
+// Objects transform in the world
+let model = Matrix4::<f32>::identity() * world_coords;
+
+let view = Matrix4::identity();
+
+let min_x = -10.0;
+let max_x = 10.0;
+//... Declare `max` for all other axis
+let projection = Matrix4::new_orthographic(
+    min_x, 
+    max_x, 
+    min_y,
+    max_y,
+    min_z,
+    max_z
+);
+
+let clip = projection * view * model
+```
