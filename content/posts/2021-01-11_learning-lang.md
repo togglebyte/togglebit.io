@@ -21,7 +21,7 @@ If you are learning to program from scratch.
   Jon Gjengset
 *
 [https://www.youtube.com/channel/UCmBgC0JN41HjyjAXfkdkp-Q](https://www.youtube.com/channel/UCmBgC0JN41HjyjAXfkdkp-Q)
-Doug Milford (lifetimes, 3d graphics)
+Doug Milford (3d graphics)
 
 ### Starter projects:
 
