@@ -16,9 +16,8 @@ If you are learning to program from scratch.
 ### Watching 
 
 * [Ryan Levick](https://www.youtube.com/channel/UCpeX4D-ArTrsqvhLapAHprQ/videos)
-* [Crust of Rust by Jon Gjengset](https://www.youtube.com/watch?v=rAl-9HwD858&list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa)
-*
-[Doug Milford (3d graphics)](https://www.youtube.com/channel/UCmBgC0JN41HjyjAXfkdkp-Q)
+* [Crust of Rust by Jon Gjengset](https://www.youtube.com/watch?v=rAl-9HwD858&list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa) 
+* [Doug Milford (3d graphics)](https://www.youtube.com/channel/UCmBgC0JN41HjyjAXfkdkp-Q)
 
 ### Starter projects:
 
