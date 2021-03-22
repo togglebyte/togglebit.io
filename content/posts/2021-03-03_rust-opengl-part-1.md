@@ -287,4 +287,7 @@ Instead of `glGetShaderInfoLog` call `glGetProgramInfoLog` with the
 ## Dictionary
 
 MRT = multiple render target (said mystran)
+VAO = Vertex Array Object
+VBO = Vertex Buffer Object / Vertex array Buffer Object
+
 
