@@ -3,7 +3,7 @@ title = "An open letter to Reddit"
 date = 2021-05-07
 +++
 
-This letter is available in the app.
+This page is available in the app.
 
 Please download an app to view the contents of this page even though you already have an app
 for that, known as "a web browser".
