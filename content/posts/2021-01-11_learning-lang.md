@@ -31,3 +31,4 @@ If you are learning to program from scratch.
 ## C
 
 * [https://www.learn-c.org/](https://www.learn-c.org/)
+* [https://en.cppreference.com/w/](https://en.cppreference.com/w/)
