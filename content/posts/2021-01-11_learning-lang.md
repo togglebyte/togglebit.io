@@ -37,3 +37,5 @@ If you are learning to program from scratch.
 
 ## Lua
 * [https://www.lua.org/pil/contents.html](https://www.lua.org/pil/contents.html) 
+* [http://tylerneylon.com/a/learn-lua/](http://tylerneylon.com/a/learn-lua/)
+* [https://lualearning.com](https://lualearning.com)
