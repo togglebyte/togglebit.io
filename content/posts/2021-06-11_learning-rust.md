@@ -38,17 +38,19 @@ create something more than just `hello world`.
 
 * [X] project creation
 * [X] compile and run (--release)
-* [ ] variable bindings
+* [X] variable bindings
 * [X] control flow and loops
 * [X] match
-* [ ] functions
-* [ ] structs
+* [X] functions
+* [X] structs
 * [ ] mutability / references / &ref / *deref
 * [ ] traits
 * [ ] IO
 * [ ] Threads
 * [ ] `Mutex` and `Arc`
 * [ ] lifetimes
+* [ ] Using the api docs
+* [ ] Vectors, Arrays and Slices
 
 ## Plan
 
@@ -84,6 +86,11 @@ let mut y = 2;
 
 ### Control flow:
 
+Talk about:
+* Assignment via `if`
+* Assignment from a `loop`
+* Breaking a loop
+
 ```rust
 let cond = true;
 
@@ -97,7 +104,7 @@ loop {
 while cond {
 }
 
-for i in vec![1, 2, 3] {
+for i in 0..100 {
 }
 ```
 
@@ -124,5 +131,71 @@ let data = match value {
 }; // semicolon is important
 ```
 
-
 ### Functions:
+
+A function
+
+```rust
+fn do_thing() {
+}
+
+```
+
+A function with one or more arguments
+
+```rust
+fn do_thing(arg1: u32, arg2: u32) {
+}
+```
+
+A function with a return value
+
+```rust
+fn do_thing() -> u32 {
+    return 123;
+}
+
+fn do_thing_implicit_return() -> u32 {
+    123
+}
+```
+
+### Structs:
+
+A struct is a way to organise data
+
+```rust
+struct Thing {
+    field_1: u8,
+    field_2: u8,
+}
+```
+
+We can add methods to structs:
+
+```rust
+impl Thing {
+    fn do_thing(&self) {
+        let sum = self.field_1 + self.field_2;
+        println!("sum: {}", sum);
+    }
+}
+```
+
+### References and mutability
+
+Talk about:
+* Can't change a value unless it's mutable*
+* Passing a reference to a value is done with `&`
+* Passing a mutable ref is done with `&mut`
+* `*` will dereference
+
+```rust
+let mut byte = 0u8;
+
+change(&mut byte);
+
+fn change(b: &mut u8) {
+    *b = 1; // deref `b` and give it a new value
+}
+```
