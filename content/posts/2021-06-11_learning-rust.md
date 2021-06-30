@@ -46,6 +46,7 @@ create something more than just `hello world`.
 * [X] Enums
 * [X] Mutability / references / &ref / *deref
 * [X] Traits
+* [ ] Error handling
 * [ ] IO
 * [ ] Threads
 * [ ] `Mutex` and `Arc`
@@ -267,3 +268,9 @@ trait Describe {
 }
 ```
 
+
+### Error handling
+
+Talk about:
+* Create our own error type
+* Passing errors down the chain
