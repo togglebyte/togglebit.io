@@ -36,25 +36,26 @@ create something more than just `hello world`.
 
 ### Topics to cover
 
-* [X] project creation
-* [X] compile and run (--release)
-* [X] variable bindings
-* [X] control flow and loops
-* [X] match
-* [X] functions
-* [X] structs
-* [ ] mutability / references / &ref / *deref
-* [ ] traits
+* [X] Project creation
+* [X] Compile and run (--release)
+* [X] Variable bindings
+* [X] Control flow and loops
+* [X] Match
+* [X] Functions
+* [X] Structs
+* [X] Enums
+* [X] Mutability / references / &ref / *deref
+* [X] Traits
 * [ ] IO
 * [ ] Threads
 * [ ] `Mutex` and `Arc`
-* [ ] lifetimes
+* [ ] Lifetimes
 * [ ] Using the api docs
 * [ ] Vectors, Arrays and Slices
 
 ## Plan
 
-### Project creation and running:
+### Project creation and running
 
 ```sh
 cargo new helloworld
@@ -69,7 +70,7 @@ cargo build
 ./target/debug/helloworld
 ```
 
-### Variable bindings:
+### Variable bindings
 
 Talk about:
 * Signed vs unsigned int
@@ -84,7 +85,7 @@ let mut y = 2;
 ```
 
 
-### Control flow:
+### Control flow
 
 Talk about:
 * Assignment via `if`
@@ -108,7 +109,7 @@ for i in 0..100 {
 }
 ```
 
-### Match:
+### Match
 
 * Curly braces only needed if there is a block
 * Assignment via `match` also works for `loop` but not for `for` and `while`
@@ -131,9 +132,13 @@ let data = match value {
 }; // semicolon is important
 ```
 
-### Functions:
+### Functions
 
 A function
+
+Talk about:
+* A function name ending with an `!` means we are calling macro
+* Implicit return
 
 ```rust
 fn do_thing() {
@@ -160,9 +165,19 @@ fn do_thing_implicit_return() -> u32 {
 }
 ```
 
-### Structs:
+### Structs
 
 A struct is a way to organise data
+
+Talk about:
+* Methods vs associated functions
+* Calling a method
+* Calling a method like an associated function
+
+Note: Structs can't contain fields that are of the same type as the struct,
+as the compiler has to know the size of the struct at compile time.
+This would create an infinitely sized struct.
+
 
 ```rust
 struct Thing {
@@ -182,6 +197,42 @@ impl Thing {
 }
 ```
 
+### Enum
+
+Talk about:
+* Unlike other languages enums can hold complex data structure
+* Enums are a good way to represent state
+* An enum can only be **one** of it's variants
+
+```rust
+enum State {
+    Stopped,
+    Running(String),
+    Paused { duration: u32, count: u32 }
+    SubState(State)
+}
+```
+
+Enums combined with `match` makes for happy times
+
+```rust
+enum Food {
+    Hamburger,
+    AvocadoToast,
+}
+
+let food = Food::Hamburger;
+let mut burger_counter = 0;
+
+match food {
+    Food::Hamburger => {
+        printlin!("I love hamburgers");
+        burger_counter += 1;
+    },
+    Food::AvocadoToast => println!("Avocado toast sounds like fun"),
+}
+```
+
 ### References and mutability
 
 Talk about:
@@ -189,6 +240,7 @@ Talk about:
 * Passing a reference to a value is done with `&`
 * Passing a mutable ref is done with `&mut`
 * `*` will dereference
+* When to pass a reference and when to move
 
 ```rust
 let mut byte = 0u8;
@@ -199,3 +251,19 @@ fn change(b: &mut u8) {
     *b = 1; // deref `b` and give it a new value
 }
 ```
+
+### Traits
+
+Talk about:
+* Value of traits
+* Trait objects (`&dyn Trait` or, if moved: `Box<dyn Trait>`)
+* Can't make trait objects if a trait has an associated function
+* `impl` Trait in arg pos
+* `impl` Trait in return pos
+
+```rust
+trait Describe {
+    fn describe(&self) -> String;
+}
+```
+
