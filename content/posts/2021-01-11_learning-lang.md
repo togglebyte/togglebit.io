@@ -13,6 +13,7 @@ If you are learning to program from scratch.
 * [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)
 * [https://learning-rust.github.io/](https://learning-rust.github.io/)
 * [Rust in Easy English](https://github.com/Dhghomon/easy_rust)
+* [Phil Op blog os](https://os.phil-opp.com/)
 
 ### Watching 
 

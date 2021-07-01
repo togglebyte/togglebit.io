@@ -13,14 +13,11 @@ This an exercise in learning Rust together on stream.
 We will do this for one hour on [date tbc], and announce this on the Discord
 server and in chat one hour in advance.
 
-Goal suggestions: 
-* Server / client chat (possibly a MUD if someone fancies that)
-* Todo app
-* Ini file parser
+**Goal: Multi threaded server / client chat**
  
 ## Prerequisites 
 
-* Rust installed.
+* Rust installed
 * A working text editor
 * Telnet or netcat (or we can't test the server before the client)
 
@@ -42,17 +39,18 @@ create something more than just `hello world`.
 * [X] Control flow and loops
 * [X] Match
 * [X] Functions
-* [X] Structs
-* [X] Enums
+* [X] Structs and tuples
 * [X] Mutability / references / &ref / *deref
 * [X] Traits
-* [ ] Error handling
+* [ ] Modules
+* [ ] Error handling and type alias
 * [ ] IO
 * [ ] Threads
 * [ ] `Mutex` and `Arc`
-* [ ] Lifetimes
-* [ ] Using the api docs
+* [X] Using the api docs
 * [ ] Vectors, Arrays and Slices
+* [X] Enums
+* [ ] Lifetimes
 
 ## Plan
 
@@ -69,6 +67,10 @@ cargo run
 ```sh
 cargo build
 ./target/debug/helloworld
+```
+
+```sh
+cargo new --lib common
 ```
 
 ### Variable bindings
@@ -268,9 +270,61 @@ trait Describe {
 }
 ```
 
+### Modules
+
+Talk about:
+* Files as modules
+* The structure of sub modules
+* Multiple modules in one file
+* Hierarchy of modules
+
+```rust
+// main.rs
+mod parent {
+    mod child {
+    }
+}
+
+parent::child
+```
+
+File system layout for a module named "submod",
+which has its own sub module named "misc"
+
+```sh
+project
+  \_ submod \
+     \_ mod.rs
+     \_ misc.rs
+  \_ main.rs
+```
+
 
 ### Error handling
 
 Talk about:
 * Create our own error type
 * Passing errors down the chain
+
+### Using api docs
+
+Talk about:
+* Finding functions
+* Looking at return types
+* Looking at args
+
+Open docs in default browser:
+
+```sh
+cargo doc --open
+```
+
+Local version of std lib api docs and "The Book":
+
+```sh
+# Open docs
+rustup doc
+
+# Go directly to std lib api
+rustup doc --std
+```
