@@ -19,7 +19,7 @@ server and in chat one hour in advance.
 
 * Rust installed
 * A working text editor
-* Telnet or netcat (or we can't test the server before the client)
+* (Optional) Telnet or netcat (or we can't test the server before creating the client)
 
 ## Format
 
@@ -38,7 +38,7 @@ create something more than just `hello world`.
 * [X] Variable bindings
 * [X] Control flow and loops
 * [X] Match
-* [X] Functions
+* [X] Functions and closures
 * [X] Structs and tuples
 * [X] Mutability / references / &ref / *deref
 * [X] Traits
@@ -142,6 +142,7 @@ A function
 Talk about:
 * A function name ending with an `!` means we are calling macro
 * Implicit return
+* Closures as callbacks
 
 ```rust
 fn do_thing() {
@@ -166,6 +167,17 @@ fn do_thing() -> u32 {
 fn do_thing_implicit_return() -> u32 {
     123
 }
+```
+
+A closure
+
+```rust
+let cl = |arg1: String| { 
+    println!("{}", arg1);
+};
+
+let string = "Hello closure".to_string();
+cl(string);
 ```
 
 ### Structs
