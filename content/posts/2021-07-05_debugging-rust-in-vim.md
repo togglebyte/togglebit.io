@@ -27,12 +27,15 @@ Now you can set a breakpoint with `:Break` and finally run the code with `:Run`.
 
 ## Commands
 
-`:Break` sets a breakpoint where the cursor is
-`:Run` starts the debugger
-`:Clear` removes the breakpoint under the cursor
-`:Over` steps over the current line
-`:Step` steps into the current line
-`:Continue` to continue execution
+* `:Break` sets a breakpoint where the cursor is
+* `:Run` starts the debugger
+* `:Clear` removes the breakpoint under the cursor
+* `:Over` steps over the current line
+* `:Step` steps into the current line
+* `:Continue` to continue execution
+* `:Evaluate` to execute selected code or code under cursor
 
 For more information see `:help Termdebug` inside vim/nvim.
 
+**Note** To see the value of the variable under the cursor: `K` (shift + k) by
+default.
