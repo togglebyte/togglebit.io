@@ -23,8 +23,9 @@ server and in chat one hour in advance.
 
 ## Format
 
-1. Go over some functionality.
-2. Answer questions in the process.
+1. Go over some functionality from the list.
+2. Implement functionality for the project
+3. Answer questions in the process.
 
 ## Goal
 
@@ -32,25 +33,25 @@ To have a basic understanding of Rust and to be able to
 create something more than just `hello world`.
 
 ### Topics to cover
-
 * [X] Project creation
 * [X] Compile and run (--release)
-* [X] Variable bindings
-* [X] Control flow and loops
-* [X] Match
-* [X] Functions and closures
-* [X] Structs and tuples
-* [X] Mutability / references / &ref / *deref
-* [X] Traits
-* [ ] Modules
-* [ ] Error handling and type alias
-* [ ] IO
-* [ ] Threads
-* [ ] `Mutex` and `Arc`
-* [X] Using the api docs
-* [ ] Vectors, Arrays and Slices
-* [X] Enums
-* [ ] Lifetimes
+
+1.  [X] Variable bindings
+2.  [X] Functions and closures
+3.  [X] Match
+4.  [X] Control flow and loops
+5.  [X] Structs and tuples
+6.  [X] Mutability / references / &ref / *deref
+7.  [X] Traits
+8.  [X] Channels
+9.  [ ] Modules
+10. [ ] Error handling and type alias
+11. [ ] IO
+12. [X] Threads, `Mutex` and `Arc`
+13. [ ] Vectors, Arrays and Slices
+14. [X] Using the api docs
+15. [X] Enums
+16. [ ] Lifetimes
 
 ## Plan
 
@@ -271,6 +272,7 @@ fn change(b: &mut u8) {
 
 Talk about:
 * Value of traits
+* Required traits (e.g `Read` and `Write` for IO)
 * Trait objects (`&dyn Trait` or, if moved: `Box<dyn Trait>`)
 * Can't make trait objects if a trait has an associated function
 * `impl` Trait in arg pos
@@ -280,6 +282,37 @@ Talk about:
 trait Describe {
     fn describe(&self) -> String;
 }
+```
+
+### Channels
+
+Talk about:
+* Passing data
+* Sender is clonable
+
+```rust
+use std::sync::mpsc;
+use std::thread;
+
+let (sender, receiver) = mpsc::channel();
+
+thread::spawn(move || {
+    loop {
+        if let Ok(val) = receiver.recv() {
+            println!("Received: {}", val);
+        }
+    }
+});
+
+let mut counter = 0usize;
+
+loop {
+    sender.send(counter);
+    counter += 1;
+    thread::sleep_ms(1000);
+}
+
+
 ```
 
 ### Modules
@@ -339,4 +372,41 @@ rustup doc
 
 # Go directly to std lib api
 rustup doc --std
+```
+
+
+### Threads
+
+Talk about:
+* Not everything can be sent between threads (only `Send` and `Sync`)
+* `Mutex` and `Arc` combinations
+* Can use `Arc` without `Mutex`, just has no mutability
+
+
+Creating a thread
+
+```rust
+use std::thread;
+
+thread::spawn(|| {
+    printline!("Hello from another thread");
+});
+```
+
+`Arc` and `Mutex` combo: modify a string in two different threads.
+
+```rust
+use std::sync::{Mutex, Arc};
+use std::thread;
+
+let s = String::new();
+let s = Arc::new(Mutex::new(s));
+
+// Thread 1
+let s_clone = Arc::clone(&s);
+thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("A")));
+
+// Thread 2
+let s_clone = Arc::clone(&s);
+thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("B")));
 ```
