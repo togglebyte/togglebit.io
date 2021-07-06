@@ -41,17 +41,18 @@ create something more than just `hello world`.
 3.  [X] Match
 4.  [X] Control flow and loops
 5.  [X] Structs and tuples
-6.  [X] Mutability / references / &ref / *deref
-7.  [X] Traits
-8.  [X] Channels
-9.  [ ] Modules
-10. [ ] Error handling and type alias
-11. [ ] IO
-12. [X] Threads, `Mutex` and `Arc`
+6.  [X] Enums
+7.  [X] Mutability / references / &ref / *deref
+8.  [X] Traits
+9.  [X] Channels
+10. [X] Modules
+11. [X] Error handling and type alias
+12. [X] IO
 13. [ ] Vectors, Arrays and Slices
-14. [X] Using the api docs
-15. [X] Enums
-16. [ ] Lifetimes
+14. [X] Iterators
+15. [X] Threads, `Mutex` and `Arc`
+16. [X] Using the api docs
+17. [ ] Lifetimes
 
 ## Plan
 
@@ -189,6 +190,9 @@ Talk about:
 * Methods vs associated functions
 * Calling a method
 * Calling a method like an associated function
+* Tuple structs
+* New type pattern is just a word for wrapping an existing type in a tuple
+  struct. There is nothing magical about this.
 
 Note: Structs can't contain fields that are of the same type as the struct,
 as the compiler has to know the size of the struct at compile time.
@@ -202,7 +206,7 @@ struct Thing {
 }
 ```
 
-We can add methods to structs:
+We can add methods to structs
 
 ```rust
 impl Thing {
@@ -211,6 +215,25 @@ impl Thing {
         println!("sum: {}", sum);
     }
 }
+```
+
+Tuple struct
+
+```rust
+struct Pos(u32, u32);
+
+let pos = Pos(12, 33);
+let (x, y) = (pos.0, pos.1);
+println!("x: {}, y: {}", x, y);
+```
+
+New type pattern
+
+```rust
+struct UserId(u32);
+
+let user_id = UserId(123);
+let val: u32 = user_id.0;
 ```
 
 ### Enum
@@ -311,8 +334,147 @@ loop {
     counter += 1;
     thread::sleep_ms(1000);
 }
+```
+
+### IO
+
+Talk about:
+* Reading in files (as bytes and text)
+* Creating files
+
+Reading bytes from a file.
+A similar approach can be used to read bytes from a network socket (where
+reading zero bytes most likely means connection closed)
+
+```rust
+use std::io::Read;
+use std::fs::File;
+
+let mut buf = [0u8; 1024];
+let file = File::open("/tmp/somefile.txt").expect("Failed to open the file");
+let bytes_read = file.read(&mut buf).unwrap();
+
+let file_content: &[u8] = &buf[..bytes_read];
+```
+
+Read an entire file as a string
+
+```rust
+use std::fs::read_to_string;
+
+let file_content = read_to_string("/tmp/somefile.txt").unwrap();
+```
+
+### Vectors, arrays and slices
+
+Talk about:
+* Vectors are dynamically sized
+* Arrays are fixed size
+* Slices are a view into either a vector or array
+* Going over the capacity of a vector will move all the data in the vector to a
+  new memory location that can fit all the elements
+
+Creating vectors
+
+```rust 
+// Create a new vector
+let mut a_vec: Vec<usize> = Vec::new();
+
+// Create a new vector with a capacity of ten.
+let mut a_vec: Vec<usize> = Vec::with_capacity(10);
+
+// Create a new vector with a capacity of two and two elements
+let mut a_vec: Vec<usize> = vec![1, 2];
+
+// Create a new vector with a capacity of 200, and it's full of ones
+let mut a_vec: Vec<usize> = vec![1; 200];
+```
+
+### Iterators
+Talk about:
+* Iterator adaptors
+* Chaining adaptors
+* Collecting
+* `iter`, `into_iter`, `iter_mut`
+* `map` is lazy and `for_each` can't return anything but a unit
+
+Iterate and produce a new `Vec<T>` that has all the values squared
+
+```rust
+let mut v = vec![1, 2, 3];
+let new_vec = v
+    .iter()
+    .map(|val| val * val)
+    .collect::<Vec<usize>>();
+```
+
+Modify all elements in a `Vec<T>`
+
+```rust
+let mut v = vec![1, 2, 3];
+v.iter_mut().for_each(|val| val *= val);
+```
+
+Combining adaptors
+
+```rust
+let v = vec![1, 2, 3, 4];
+
+let new_values = v
+    .iter()
+    .enumerate() 
+    .filter(|number| number > 2)
+    .map(|number| number += 10)
+    .collect::<Vec<_>>();
+```
+
+Flatten an iterator
+
+```rust
+let v = vec![
+    vec![1, 2],
+    vec![3, 4],
+];
+
+for val in v.into_iter().flatten() {
+    eprintln!("{:?}", val);
+}
+```
+
+### Threads
+
+Talk about:
+* Not everything can be sent between threads (only `Send` and `Sync`)
+* `Mutex` and `Arc` combinations
+* Can use `Arc` without `Mutex`, just has no mutability
 
 
+Creating a thread
+
+```rust
+use std::thread;
+
+thread::spawn(|| {
+    printline!("Hello from another thread");
+});
+```
+
+`Arc` and `Mutex` combo: modify a string in two different threads.
+
+```rust
+use std::sync::{Mutex, Arc};
+use std::thread;
+
+let s = String::new();
+let s = Arc::new(Mutex::new(s));
+
+// Thread 1
+let s_clone = Arc::clone(&s);
+thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("A")));
+
+// Thread 2
+let s_clone = Arc::clone(&s);
+thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("B")));
 ```
 
 ### Modules
@@ -350,6 +512,26 @@ project
 Talk about:
 * Create our own error type
 * Passing errors down the chain
+* Using `thiserr` and `anyhow`
+
+Implementing your own error type that works with the `?` operator.
+
+```rust
+use std::io::Error as IoErr;
+
+type Result<T> = std::result::Result<T, OurErr>;
+
+pub enum OurErr {
+    Io(IoErr),
+    Misc(String),
+}
+
+impl From<IoErr> for OurErr {
+    fn from(e: IoErr) -> Self {
+        Self::Io(e)
+    }
+}
+```
 
 ### Using api docs
 
@@ -372,41 +554,4 @@ rustup doc
 
 # Go directly to std lib api
 rustup doc --std
-```
-
-
-### Threads
-
-Talk about:
-* Not everything can be sent between threads (only `Send` and `Sync`)
-* `Mutex` and `Arc` combinations
-* Can use `Arc` without `Mutex`, just has no mutability
-
-
-Creating a thread
-
-```rust
-use std::thread;
-
-thread::spawn(|| {
-    printline!("Hello from another thread");
-});
-```
-
-`Arc` and `Mutex` combo: modify a string in two different threads.
-
-```rust
-use std::sync::{Mutex, Arc};
-use std::thread;
-
-let s = String::new();
-let s = Arc::new(Mutex::new(s));
-
-// Thread 1
-let s_clone = Arc::clone(&s);
-thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("A")));
-
-// Thread 2
-let s_clone = Arc::clone(&s);
-thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("B")));
 ```
