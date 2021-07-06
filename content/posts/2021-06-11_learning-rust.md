@@ -43,16 +43,17 @@ create something more than just `hello world`.
 5.  [X] Structs and tuples
 6.  [X] Enums, Result and Option
 7.  [X] Mutability / references / &ref / *deref
-8.  [X] Traits
-9.  [X] Channels
-10. [X] Modules
-11. [X] Error handling and type alias
-12. [X] IO
-13. [X] Vectors, Arrays and Slices
-14. [X] Iterators
-15. [X] Threads, `Mutex` and `Arc`
-16. [X] Using the api docs
-17. [ ] Lifetimes
+8.  [ ] Strings and &str (string slice)
+9.  [X] Traits
+10. [X] Channels
+11. [X] Modules
+12. [X] Error handling and type alias
+13. [X] IO
+14. [X] Vectors, Arrays and Slices
+15. [X] Iterators
+16. [X] Threads, `Mutex` and `Arc`
+17. [X] Using the api docs
+18. [ ] Lifetimes
 
 ## Plan
 
@@ -290,6 +291,21 @@ change(&mut byte);
 fn change(b: &mut u8) {
     *b = 1; // deref `b` and give it a new value
 }
+```
+
+### String and &str (string slice)
+
+Talk about:
+* Why do we need more than one type for a string
+* Strings are just byte vectors under the hood
+* A `String` in Rust is always valid utf8
+* The `len()` function of a string returns number of bytes (not number of chars)
+
+```rust
+let string = String::new();
+let string_slice: &str = &string;
+let string_slice = string.as_str();
+let string_slice = &string[..];
 ```
 
 ### Traits
@@ -605,4 +621,20 @@ rustup doc --std
 ### Lifetimes
 
 Talk about:
+* Structs having references
+
+```rust
+struct Application<'a> {
+    name: &'a str
+}
+
+struct Config<'a> {
+    name: &'a str,
+}
+
+let app_name = "Blorp".to_string();
+
+let app = Application { name: &app_name };
+let config = Config { name: &app_name };
+```
 
