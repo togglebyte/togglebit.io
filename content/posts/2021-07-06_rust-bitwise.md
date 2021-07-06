@@ -5,12 +5,14 @@ date = 2021-07-06
 
 ## Operators:
 
+```
 AND         &
 OR          |
 NOT         !
 XOR         ^
 Left shift  <<
 Right shift >>
+```
 
 ### Get a bit
 

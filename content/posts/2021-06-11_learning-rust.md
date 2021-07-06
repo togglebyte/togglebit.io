@@ -41,14 +41,14 @@ create something more than just `hello world`.
 3.  [X] Match
 4.  [X] Control flow and loops
 5.  [X] Structs and tuples
-6.  [X] Enums
+6.  [X] Enums, Result and Option
 7.  [X] Mutability / references / &ref / *deref
 8.  [X] Traits
 9.  [X] Channels
 10. [X] Modules
 11. [X] Error handling and type alias
 12. [X] IO
-13. [ ] Vectors, Arrays and Slices
+13. [X] Vectors, Arrays and Slices
 14. [X] Iterators
 15. [X] Threads, `Mutex` and `Arc`
 16. [X] Using the api docs
@@ -242,6 +242,7 @@ Talk about:
 * Unlike other languages enums can hold complex data structure
 * Enums are a good way to represent state
 * An enum can only be **one** of it's variants
+* Result and Option
 
 ```rust
 enum State {
@@ -373,6 +374,10 @@ Talk about:
 * Slices are a view into either a vector or array
 * Going over the capacity of a vector will move all the data in the vector to a
   new memory location that can fit all the elements
+* Pushing and popping
+* Why we create slices rather than cloning / copying a `Vec<T>` or `[T]` (array):
+  * Ranges
+  * Cost
 
 Creating vectors
 
@@ -388,6 +393,47 @@ let mut a_vec: Vec<usize> = vec![1, 2];
 
 // Create a new vector with a capacity of 200, and it's full of ones
 let mut a_vec: Vec<usize> = vec![1; 200];
+```
+
+Creating an array
+
+```rust
+// An array with three bytes in it
+let array_of_bytes = [0u8, 1, 2, 3];
+
+// An array with 200 bytes in it, where every byte is zero
+let array_of_bytes = [0u8; 200];
+```
+
+Creating a slice
+
+```rust
+let data = vec![1u8, 2, 3, 4];
+// We specify the type here to prevent
+let slice = &data[1..2]; // a slice containing 2, 3
+```
+
+Looping over all the values in a vector.
+If we didn't use a reference (`&`) we would consume the vector
+
+```rust
+let v = vec![1, 2];
+
+for value in &v {
+    println!("{}", value);
+}
+```
+
+Pushing and popping.
+Popping returns an `Option<T>`
+
+```rust
+let mut v = vec![];
+
+v.push(1); // v = vec![1]
+v.push(2); // v = vec![1, 2]
+v.pop();   // v = vec![1]
+v.pop();   // v = vec![]
 ```
 
 ### Iterators
@@ -555,3 +601,8 @@ rustup doc
 # Go directly to std lib api
 rustup doc --std
 ```
+
+### Lifetimes
+
+Talk about:
+
