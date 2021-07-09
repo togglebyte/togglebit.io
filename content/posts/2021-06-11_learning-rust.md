@@ -32,6 +32,7 @@ server and in chat one hour in advance.
 To have a basic understanding of Rust and to be able to
 create something more than just `hello world`.
 
+
 ### Topics to cover
 * [X] Project creation
 * [X] Compile and run (--release)
@@ -45,23 +46,26 @@ create something more than just `hello world`.
 7.  [X] Match
 8.  [X] Control flow and loops
 9.  [X] Structs and tuples
-10. [X] Enums, Result and Option
-11. [X] Traits
-12. [X] Threads, `Mutex` and `Arc`
-13. [X] Channels
-14. [X] Modules
-15. [X] Error handling and type alias
-16. [X] IO
-17. [X] Iterators
-18. [X] Using the api docs
-19. [ ] Lifetimes
+10. [X] Modules
+11. [X] Drop
+12. [X] Enums, Result and Option
+13. [X] Traits
+14. [X] Threads, `Mutex` and `Arc`
+15. [X] Channels
+16. [X] Error handling and type alias
+17. [X] IO
+18. [X] Iterators
+19. [X] Using the api docs
+20. [ ] Lifetimes
 
 ## Plan
 
-* Goal 1: cover 1 - 9
-* Goal 2: cover 10 - 13
-* Goal 3: cover 14 - 15
-* Goal 4: cover 16 - ...
+```
+* Goal 1: cover 1 - 9       A server that can accept connections
+* Goal 2: cover 10 - 15     Sending / receiving messages
+* Goal 3: cover 16 - 17     Error handling and proper termination of clients
+* Goal 4: cover 18 - ...
+```
 
 ### Project creation and running
 
@@ -114,7 +118,6 @@ fn change(b: &mut u8) {
     *b = 1; // deref `b` and give it a new value
 }
 ```
-
 
 ### Control flow
 
@@ -332,6 +335,7 @@ Talk about:
 * Tuple structs
 * New type pattern is just a word for wrapping an existing type in a tuple
   struct. There is nothing magical about this.
+* Destructuring
 
 Note: Structs can't contain fields that are of the same type as the struct,
 as the compiler has to know the size of the struct at compile time.
@@ -375,13 +379,31 @@ let user_id = UserId(123);
 let val: u32 = user_id.0;
 ```
 
+Destructure a struct
+
+```rust
+struct Values {
+    a: u32,
+    b: u32,
+    c: u32,
+    d: u32,
+}
+
+let values = Values { a: 1, b: 2, c: 3, d: 4 };
+
+let Values { a, c, .. } = values;
+
+println!("a: {}, c: {}", a, c);
+```
+
 ### Enum
 
 Talk about:
 * Unlike other languages enums can hold complex data structure
 * Enums are a good way to represent state
 * An enum can only be **one** of it's variants
-* Result and Option
+* `Result` and `Option`
+* `map` and `map_err` on `Result` and `Option`
 
 ```rust
 enum State {
@@ -523,6 +545,7 @@ let file_content = read_to_string("/tmp/somefile.txt").unwrap();
 ```
 
 ### Iterators
+
 Talk about:
 * Iterator adaptors
 * Chaining adaptors
@@ -602,15 +625,30 @@ project
   \_ main.rs
 ```
 
+### Drop
+
+Talk about:
+* How Rust handles memory (in general)
+* Implementing `drop` our selves
+
+```rust
+struct A;
+
+impl Drop for A {
+    fn drop(&mut self) {
+        println!("A was dropped");
+    }
+}
+```
 
 ### Error handling
 
 Talk about:
-* Create our own error type
+* Create our own error type 
 * Passing errors down the chain
 * Using `thiserr` and `anyhow`
 
-Implementing your own error type that works with the `?` operator.
+Implementing your own error type that works with the `?` operator
 
 ```rust
 use std::io::Error as IoErr;
