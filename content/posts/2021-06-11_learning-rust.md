@@ -59,8 +59,8 @@ create something more than just `hello world`.
 ## Plan
 
 * Goal 1: cover 1 - 9
-* Goal 2: cover 10 - 12
-* Goal 3: cover 13 - 15
+* Goal 2: cover 10 - 13
+* Goal 3: cover 14 - 15
 * Goal 4: cover 16 - ...
 
 ### Project creation and running
