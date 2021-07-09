@@ -37,25 +37,31 @@ create something more than just `hello world`.
 * [X] Compile and run (--release)
 
 1.  [X] Variable bindings
-2.  [X] Functions and closures
-3.  [X] Match
-4.  [X] Control flow and loops
-5.  [X] Structs and tuples
-6.  [X] Enums, Result and Option
-7.  [X] Mutability / references / &ref / *deref
-8.  [ ] Strings and &str (string slice)
-9.  [X] Traits
-10. [X] Channels
-11. [X] Modules
-12. [X] Error handling and type alias
-13. [X] IO
-14. [X] Vectors, Arrays and Slices
-15. [X] Iterators
-16. [X] Threads, `Mutex` and `Arc`
-17. [X] Using the api docs
-18. [ ] Lifetimes
+2.  [X] Mutability / references / &ref / *deref
+3.  [X] Functions and closures
+4.  [X] Importing modules
+5.  [X] Vectors, Arrays and Slices
+6.  [X] Strings
+7.  [X] Match
+8.  [X] Control flow and loops
+9.  [X] Structs and tuples
+10. [X] Enums, Result and Option
+11. [X] Traits
+12. [X] Threads, `Mutex` and `Arc`
+13. [X] Channels
+14. [X] Modules
+15. [X] Error handling and type alias
+16. [X] IO
+17. [X] Iterators
+18. [X] Using the api docs
+19. [ ] Lifetimes
 
 ## Plan
+
+* Goal 1: cover 1 - 9
+* Goal 2: cover 10 - 12
+* Goal 3: cover 13 - 15
+* Goal 4: cover 16 - ...
 
 ### Project creation and running
 
@@ -88,6 +94,25 @@ Talk about:
 ```rust
 let x = 1;
 let mut y = 2;
+```
+
+### References and mutability
+
+Talk about:
+* Can't change a value unless it's mutable*
+* Passing a reference to a value is done with `&`
+* Passing a mutable ref is done with `&mut`
+* `*` will dereference
+* When to pass a reference and when to move
+
+```rust
+let mut byte = 0u8;
+
+change(&mut byte);
+
+fn change(b: &mut u8) {
+    *b = 1; // deref `b` and give it a new value
+}
 ```
 
 
@@ -138,7 +163,7 @@ let data = match value {
 }; // semicolon is important
 ```
 
-### Functions
+### Functions and closures
 
 A function
 
@@ -175,12 +200,125 @@ fn do_thing_implicit_return() -> u32 {
 A closure
 
 ```rust
-let cl = |arg1: String| { 
+let cl = |arg1: u32| { 
     println!("{}", arg1);
 };
 
 let string = "Hello closure".to_string();
 cl(string);
+```
+
+### Importing from std lib
+
+Talk about:
+* Importing from std library
+* Same applies to third party crates
+
+Importing a single path 
+
+```rust
+use std::net::TcpStream;
+```
+
+Importing multiple paths from the same module
+
+```rust
+use std::net::{TcpStream, TcpListener};
+```
+
+Importing a path under another name
+
+```rust
+use std::net::TcpStream as Stream;
+```
+
+### Vectors, arrays and slices
+
+Talk about:
+* Vectors are dynamically sized
+* Arrays are fixed size
+* Slices are a view into either a vector or array
+* Going over the capacity of a vector will move all the data in the vector to a
+  new memory location that can fit all the elements
+* Pushing and popping
+* Why we create slices rather than cloning / copying a `Vec<T>` or `[T]` (array):
+  * Ranges
+  * Cost
+
+Creating vectors
+
+```rust 
+// Create a new vector
+let mut a_vec: Vec<usize> = Vec::new();
+
+// Create a new vector with a capacity of ten.
+let mut a_vec: Vec<usize> = Vec::with_capacity(10);
+
+// Create a new vector with a capacity of two and two elements
+let mut a_vec: Vec<usize> = vec![1, 2];
+
+// Create a new vector with a capacity of 200, and it's full of ones
+let mut a_vec: Vec<usize> = vec![1; 200];
+```
+
+Creating an array
+
+```rust
+// An array with three bytes in it
+let array_of_bytes = [0u8, 1, 2, 3];
+
+// An array with 200 bytes in it, where every byte is zero
+let array_of_bytes = [0u8; 200];
+```
+
+Creating a slice
+
+```rust
+let data = vec![1u8, 2, 3, 4];
+// We specify the type here to prevent
+let slice = &data[1..2]; // a slice containing 2, 3
+```
+
+Looping over all the values in a vector.
+If we didn't use a reference (`&`) we would consume the vector
+
+```rust
+let v = vec![1, 2];
+
+for value in &v {
+    println!("{}", value);
+}
+```
+
+Pushing and popping.
+Popping returns an `Option<T>`
+
+```rust
+let mut v = vec![];
+
+v.push(1); // v = vec![1]
+v.push(2); // v = vec![1, 2]
+v.pop();   // v = vec![1]
+v.pop();   // v = vec![]
+```
+
+### String and &str (string slice)
+
+Talk about:
+* Why do we need more than one type for a string
+* Strings are just byte vectors under the hood
+* A `String` in Rust is always valid utf8
+* The `len()` function of a string returns number of bytes (not number of chars)
+* A `String` can deref to a `&str`
+* Useful `String` methods: `trim`, `split_whitespace`, `push_str`
+* Useful `str` methods: `starts_with`, `ends_with`, `contains`
+* Briefly show the list of available functions for `String` and `&str`
+
+```rust
+let string = String::new();
+let string_slice: &str = &string;
+let string_slice = string.as_str();
+let string_slice = &string[..];
 ```
 
 ### Structs
@@ -274,40 +412,6 @@ match food {
 }
 ```
 
-### References and mutability
-
-Talk about:
-* Can't change a value unless it's mutable*
-* Passing a reference to a value is done with `&`
-* Passing a mutable ref is done with `&mut`
-* `*` will dereference
-* When to pass a reference and when to move
-
-```rust
-let mut byte = 0u8;
-
-change(&mut byte);
-
-fn change(b: &mut u8) {
-    *b = 1; // deref `b` and give it a new value
-}
-```
-
-### String and &str (string slice)
-
-Talk about:
-* Why do we need more than one type for a string
-* Strings are just byte vectors under the hood
-* A `String` in Rust is always valid utf8
-* The `len()` function of a string returns number of bytes (not number of chars)
-
-```rust
-let string = String::new();
-let string_slice: &str = &string;
-let string_slice = string.as_str();
-let string_slice = &string[..];
-```
-
 ### Traits
 
 Talk about:
@@ -353,6 +457,42 @@ loop {
 }
 ```
 
+### Threads
+
+Talk about:
+* Not everything can be sent between threads (only `Send` and `Sync`)
+* `Mutex` and `Arc` combinations
+* Can use `Arc` without `Mutex`, just has no mutability
+
+
+Creating a thread
+
+```rust
+use std::thread;
+
+thread::spawn(|| {
+    printline!("Hello from another thread");
+});
+```
+
+`Arc` and `Mutex` combo: modify a string in two different threads.
+
+```rust
+use std::sync::{Mutex, Arc};
+use std::thread;
+
+let s = String::new();
+let s = Arc::new(Mutex::new(s));
+
+// Thread 1
+let s_clone = Arc::clone(&s);
+thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("A")));
+
+// Thread 2
+let s_clone = Arc::clone(&s);
+thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("B")));
+```
+
 ### IO
 
 Talk about:
@@ -380,76 +520,6 @@ Read an entire file as a string
 use std::fs::read_to_string;
 
 let file_content = read_to_string("/tmp/somefile.txt").unwrap();
-```
-
-### Vectors, arrays and slices
-
-Talk about:
-* Vectors are dynamically sized
-* Arrays are fixed size
-* Slices are a view into either a vector or array
-* Going over the capacity of a vector will move all the data in the vector to a
-  new memory location that can fit all the elements
-* Pushing and popping
-* Why we create slices rather than cloning / copying a `Vec<T>` or `[T]` (array):
-  * Ranges
-  * Cost
-
-Creating vectors
-
-```rust 
-// Create a new vector
-let mut a_vec: Vec<usize> = Vec::new();
-
-// Create a new vector with a capacity of ten.
-let mut a_vec: Vec<usize> = Vec::with_capacity(10);
-
-// Create a new vector with a capacity of two and two elements
-let mut a_vec: Vec<usize> = vec![1, 2];
-
-// Create a new vector with a capacity of 200, and it's full of ones
-let mut a_vec: Vec<usize> = vec![1; 200];
-```
-
-Creating an array
-
-```rust
-// An array with three bytes in it
-let array_of_bytes = [0u8, 1, 2, 3];
-
-// An array with 200 bytes in it, where every byte is zero
-let array_of_bytes = [0u8; 200];
-```
-
-Creating a slice
-
-```rust
-let data = vec![1u8, 2, 3, 4];
-// We specify the type here to prevent
-let slice = &data[1..2]; // a slice containing 2, 3
-```
-
-Looping over all the values in a vector.
-If we didn't use a reference (`&`) we would consume the vector
-
-```rust
-let v = vec![1, 2];
-
-for value in &v {
-    println!("{}", value);
-}
-```
-
-Pushing and popping.
-Popping returns an `Option<T>`
-
-```rust
-let mut v = vec![];
-
-v.push(1); // v = vec![1]
-v.push(2); // v = vec![1, 2]
-v.pop();   // v = vec![1]
-v.pop();   // v = vec![]
 ```
 
 ### Iterators
@@ -501,42 +571,6 @@ let v = vec![
 for val in v.into_iter().flatten() {
     eprintln!("{:?}", val);
 }
-```
-
-### Threads
-
-Talk about:
-* Not everything can be sent between threads (only `Send` and `Sync`)
-* `Mutex` and `Arc` combinations
-* Can use `Arc` without `Mutex`, just has no mutability
-
-
-Creating a thread
-
-```rust
-use std::thread;
-
-thread::spawn(|| {
-    printline!("Hello from another thread");
-});
-```
-
-`Arc` and `Mutex` combo: modify a string in two different threads.
-
-```rust
-use std::sync::{Mutex, Arc};
-use std::thread;
-
-let s = String::new();
-let s = Arc::new(Mutex::new(s));
-
-// Thread 1
-let s_clone = Arc::clone(&s);
-thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("A")));
-
-// Thread 2
-let s_clone = Arc::clone(&s);
-thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("B")));
 ```
 
 ### Modules
@@ -610,11 +644,15 @@ cargo doc --open
 
 Local version of std lib api docs and "The Book":
 
-```sh
-# Open docs
-rustup doc
+Open docs
 
-# Go directly to std lib api
+```sh
+rustup doc
+```
+
+Go directly to std lib api
+
+```sh
 rustup doc --std
 ```
 
@@ -622,6 +660,8 @@ rustup doc --std
 
 Talk about:
 * Structs having references
+* `'static`: As a trait bound, it means the type does not contain any non-static references.
+* Read up on: https://doc.rust-lang.org/nomicon/lifetimes.html
 
 ```rust
 struct Application<'a> {
