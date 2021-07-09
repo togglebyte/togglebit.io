@@ -5,9 +5,10 @@ date = 2021-06-11
 
 ## Overview
 
-[So far this is just a draft, and requires more thought]
+**We will do this once or twice to test it out first before we commit to this.**
 
-We will do this once or twice to test it out first before we commit to this.
+**Note:** Most code snippets here are written as if they belong to a context or 
+inside a scope / function.
  
 This an exercise in learning Rust together on stream.
 We will do this for one hour on [date tbc], and announce this on the Discord
