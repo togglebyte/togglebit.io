@@ -17,7 +17,7 @@ server and in chat one hour in advance.
  
 ## Prerequisites 
 
-* Rust installed
+* Rust (and Cargo) installed: [https://rustup.rs/](https://rustup.rs/)
 * A working text editor
 * (Optional) Telnet or netcat (or we can't test the server before creating the client)
 
