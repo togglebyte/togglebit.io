@@ -21,7 +21,7 @@ Previously the shader had a `uniform` value called "transform" that was updated
 for every instance, and every instance was drawn using `glDrawArrays`.
 
 With instanced rendering this changes to an input variable, since each instance
-will have its transform added to a `Vec<Matrix<f32>>` and finally written using
+will have its transform added to a `Vec<Matrix4<f32>>` and finally written using
 `glBufferData`.
 
 ```glsl
