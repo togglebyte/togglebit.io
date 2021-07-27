@@ -6,7 +6,11 @@ date = 2021-03-15
 ## Overview
 
 Transforming instances when using instanced rendering doesn't work with
-`uniforms` as each instance needs its own transform.
+`uniform`s  as each instance needs its own transform.
+
+**Note**: It is possible to pass an array of `uniform`s per draw call.
+It would be more performant to pass 100 transforms as an array to a single
+uniform, rather than 100 transforms as vertex pointers.
 
 Iterate over the instance positions and set them via `glBufferData` (which
 replaces the way of doing it by setting the uniform value).
