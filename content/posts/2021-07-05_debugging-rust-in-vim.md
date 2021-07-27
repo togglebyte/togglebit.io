@@ -3,22 +3,22 @@ title = "Debugging Rust with vim and neovim (in Linux)"
 date = 2021-07-05
 +++
 
-## Step 1:
+## Step 1
 
 Run `:packadd termdebug` inside vim/nvim.
 
-This has to be done for every instance, so if you want this to always be enabled then
-add this to your vimrc.
+This has to be done for every instance, so if you want this to always be enabled
+then add this to your vimrc.
 
 Also to use `rust-gdb` rather than standard `gdb` set `let
 g:termdebugger="rust-gdb"`.
 
-## Step 2:
+## Step 2
 
 Build your project (so you have something to debug in `./target/debug/<your
 project>`)
 
-## Step 3: 
+## Step 3
 
 From within vim/nvim run `:Termdebug target/debug/<your project>`.
 This will start gdb.

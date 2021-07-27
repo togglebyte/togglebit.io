@@ -3,9 +3,9 @@ title = "Bitwise cheat sheet for Rust"
 date = 2021-07-06
 +++
 
-## Operators:
+## Operators
 
-```
+```txt
 AND         &
 OR          |
 NOT         !
@@ -39,6 +39,5 @@ i & !(1 << n)
 ```rust
 i ^ (1 << n)
 ```
-
 
 Source: [https://nicolwk.medium.com/bitwise-operations-cheat-sheet-743e09aec5b5](https://nicolwk.medium.com/bitwise-operations-cheat-sheet-743e09aec5b5)

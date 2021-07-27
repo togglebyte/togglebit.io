@@ -7,7 +7,7 @@ date = 2021-03-03
 
 Validate shaders before assuming a bug elsewhere:
 
-```
+```sh
 glslangValidator myshader.frag
 ```
 
@@ -24,7 +24,7 @@ Ouput of the vertex shaders is in NDC;
 ## Window setup
 
 The important part of creating the window handle is the OpenGL context.
-There can only be one current context at a time. 
+There can only be one current context at a time.
 
 To use another context on another thread, call `make_not_current` on the current
 context first, before making the context on another thread current with `make_current`.
@@ -43,7 +43,7 @@ let context = ContextBuilder::new()
 let context = unsafe { context.make_current().unwrap() };
 ```
 
-## Load all OpenGL functions 
+## Load all OpenGL functions
 
 Load all OpenGL functions globally:
 
@@ -105,7 +105,6 @@ glBufferData(
 );
 ```
 
-
 ## Vertex attributes
 
 Vertex attributes describes how the vertex data should be interpreted by the
@@ -129,7 +128,7 @@ glEnableVertexAttribArray(0);
 glEnableVertexAttribArray(1);
 ```
 
-```sl
+```glsl
 #version 330 core
 
 layout (location = 0) in vec3 position;
@@ -141,7 +140,6 @@ void main() {
     ci = colours;
 }
 ```
-
 
 ## Shaders
 
@@ -200,11 +198,11 @@ glCompileShader(vertex_shader);
 ```
 
 To the same thing for the fragment shader, except replace the word vertex with
-fragment. 
+fragment.
 
 The shader source for the fragment shader looks slightly different:
 
-```sl
+```glsl
 # version 330 core
 
 out vec4 colour;
@@ -242,7 +240,7 @@ glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &mut success); // query shader o
 if success == 0 { // anything but zero qualifies as success
     let mut log: Vec<u8> = Vec::with_capacity(1024); // should be enough
     let mut len = 0;
-    
+
     glGetShaderInfoLog(
         vertex_shader,
         log.capacity() as i32,
@@ -267,18 +265,19 @@ Instead of `glGetShaderInfoLog` call `glGetProgramInfoLog` with the
 2. [ ]  Create an OpenGL context
 3. [ ]  Create vertex array object
 4. [ ]  Create at least one vertex buffer object
-5. [ ]  Attach attributes to translate vertex data 
+5. [ ]  Attach attributes to translate vertex data
    for the shaders
 6. [ ] Draw and swap buffers
 
-## Resources:
+## Resources
 
-* [https://github.com/rust-tutorials/learn-opengl](https://github.com/rust-tutorials/learn-opengl) Learn OpenGL lessons in Rust.
+* [https://github.com/rust-tutorials/learn-opengl](https://github.com/rust-tutorials/learn-opengl)
+  Learn OpenGL lessons in Rust.
 * [https://github.com/Lokathor/gl33](https://github.com/Lokathor/gl33) OpenGL
   bindings for Rust
 * [https://learnopengl.com/](https://learnopengl.com/)
 
-## Crates:
+## Crates
 
 * [https://crates.io/crates/glutin](https://crates.io/crates/glutin) Glutin
   (window handling and OpenGL Context)
@@ -289,5 +288,3 @@ Instead of `glGetShaderInfoLog` call `glGetProgramInfoLog` with the
 MRT = multiple render target (said mystran)
 VAO = Vertex Array Object
 VBO = Vertex Buffer Object / Vertex array Buffer Object
-
-

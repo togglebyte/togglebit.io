@@ -7,19 +7,19 @@ date = 2021-06-11
 
 **We will do this once or twice to test it out first before we commit to this.**
 
-**Note:** Most code snippets here are written as if they belong to a context or 
+**Note:** Most code snippets here are written as if they belong to a context or
 inside a scope / function.
- 
+
 This an exercise in learning Rust together on stream.
 We will do this for one hour on [date tbc], and announce this on the Discord
 server and in chat one hour in advance.
 
-**Goal: Multi threaded server / client chat**
- 
-## Prerequisites 
+**Goal:** Multi threaded server / client chat
 
-* Rust (and Cargo) installed: [https://rustup.rs/](https://rustup.rs/). 
-    * Windows users: [https://docs.microsoft.com/en-us/windows/dev-environment/rust/setup](https://docs.microsoft.com/en-us/windows/dev-environment/rust/setup)
+## Prerequisites
+
+* Rust (and Cargo) installed: [https://rustup.rs/](https://rustup.rs/).
+  * Windows users: [https://docs.microsoft.com/en-us/windows/dev-environment/rust/setup](https://docs.microsoft.com/en-us/windows/dev-environment/rust/setup)
 * A working text editor
 * (Optional) Telnet or netcat (or we can't test the server before creating the client)
 
@@ -34,20 +34,20 @@ server and in chat one hour in advance.
 To have a basic understanding of Rust and to be able to
 create something more than just `hello world`.
 
-
 ### Topics to cover
+
 * [X] Project creation
 * [X] Compile and run (--release)
 
-1.  [X] Variable bindings
-2.  [X] Mutability / references / &ref / *deref
-3.  [X] Functions and closures
-4.  [X] Importing modules
-5.  [X] Vectors, Arrays and Slices
-6.  [X] Strings
-7.  [X] Match
-8.  [X] Control flow and loops
-9.  [X] Structs and tuples
+1. [X] Variable bindings
+2. [X] Mutability / references / &ref / *deref
+3. [X] Functions and closures
+4. [X] Importing modules
+5. [X] Vectors, Arrays and Slices
+6. [X] Strings
+7. [X] Match
+8. [X] Control flow and loops
+9. [X] Structs and tuples
 10. [X] Modules
 11. [X] Drop
 12. [X] Enums, Result and Option
@@ -62,7 +62,7 @@ create something more than just `hello world`.
 
 ## Plan
 
-```
+```md
 * Goal 1: cover 1 - 9       A server that can accept connections
 * Goal 2: cover 10 - 15     Sending / receiving messages
 * Goal 3: cover 16 - 17     Error handling and proper termination of clients
@@ -91,6 +91,7 @@ cargo new --lib common
 ### Variable bindings
 
 Talk about:
+
 * Signed vs unsigned int
 * `usize` / `isize` (why do we have it)
 * Specify type
@@ -105,6 +106,7 @@ let mut y = 2;
 ### References and mutability
 
 Talk about:
+
 * Can't change a value unless it's mutable*
 * Passing a reference to a value is done with `&`
 * Passing a mutable ref is done with `&mut`
@@ -124,6 +126,7 @@ fn change(b: &mut u8) {
 ### Control flow
 
 Talk about:
+
 * Assignment via `if`
 * Assignment from a `loop`
 * Breaking a loop
@@ -173,6 +176,7 @@ let data = match value {
 A function
 
 Talk about:
+
 * A function name ending with an `!` means we are calling macro
 * Implicit return
 * Closures as callbacks
@@ -205,7 +209,7 @@ fn do_thing_implicit_return() -> u32 {
 A closure
 
 ```rust
-let cl = |arg1: u32| { 
+let cl = |arg1: u32| {
     println!("{}", arg1);
 };
 
@@ -216,10 +220,11 @@ cl(string);
 ### Importing from std lib
 
 Talk about:
+
 * Importing from std library
 * Same applies to third party crates
 
-Importing a single path 
+Importing a single path
 
 ```rust
 use std::net::TcpStream;
@@ -240,6 +245,7 @@ use std::net::TcpStream as Stream;
 ### Vectors, arrays and slices
 
 Talk about:
+
 * Vectors are dynamically sized
 * Arrays are fixed size
 * Slices are a view into either a vector or array
@@ -252,7 +258,7 @@ Talk about:
 
 Creating vectors
 
-```rust 
+```rust
 // Create a new vector
 let mut a_vec: Vec<usize> = Vec::new();
 
@@ -310,6 +316,7 @@ v.pop();   // v = vec![]
 ### String and &str (string slice)
 
 Talk about:
+
 * Why do we need more than one type for a string
 * Strings are just byte vectors under the hood
 * A `String` in Rust is always valid utf8
@@ -331,6 +338,7 @@ let string_slice = &string[..];
 A struct is a way to organise data
 
 Talk about:
+
 * Methods vs associated functions
 * Calling a method
 * Calling a method like an associated function
@@ -342,7 +350,6 @@ Talk about:
 Note: Structs can't contain fields that are of the same type as the struct,
 as the compiler has to know the size of the struct at compile time.
 This would create an infinitely sized struct.
-
 
 ```rust
 struct Thing {
@@ -401,6 +408,7 @@ println!("a: {}, c: {}", a, c);
 ### Enum
 
 Talk about:
+
 * Unlike other languages enums can hold complex data structure
 * Enums are a good way to represent state
 * An enum can only be **one** of it's variants
@@ -439,6 +447,7 @@ match food {
 ### Traits
 
 Talk about:
+
 * Value of traits
 * Required traits (e.g `Read` and `Write` for IO)
 * Trait objects (`&dyn Trait` or, if moved: `Box<dyn Trait>`)
@@ -455,6 +464,7 @@ trait Describe {
 ### Channels
 
 Talk about:
+
 * Passing data
 * Sender is clonable
 
@@ -484,10 +494,10 @@ loop {
 ### Threads
 
 Talk about:
+
 * Not everything can be sent between threads (only `Send` and `Sync`)
 * `Mutex` and `Arc` combinations
 * Can use `Arc` without `Mutex`, just has no mutability
-
 
 Creating a thread
 
@@ -520,6 +530,7 @@ thread::spawn(move ||  s_clone.lock().map(|mut s| s.push_str("B")));
 ### IO
 
 Talk about:
+
 * Reading in files (as bytes and text)
 * Creating files
 
@@ -549,6 +560,7 @@ let file_content = read_to_string("/tmp/somefile.txt").unwrap();
 ### Iterators
 
 Talk about:
+
 * Iterator adaptors
 * Chaining adaptors
 * Collecting
@@ -579,7 +591,7 @@ let v = vec![1, 2, 3, 4];
 
 let new_values = v
     .iter()
-    .enumerate() 
+    .enumerate()
     .filter(|number| number > 2)
     .map(|number| number += 10)
     .collect::<Vec<_>>();
@@ -601,6 +613,7 @@ for val in v.into_iter().flatten() {
 ### Modules
 
 Talk about:
+
 * Files as modules
 * The structure of sub modules
 * Multiple modules in one file
@@ -630,6 +643,7 @@ project
 ### Drop
 
 Talk about:
+
 * How Rust handles memory (in general)
 * Implementing `drop` our selves
 
@@ -646,7 +660,8 @@ impl Drop for A {
 ### Error handling
 
 Talk about:
-* Create our own error type 
+
+* Create our own error type
 * Passing errors down the chain
 * Using `thiserr` and `anyhow`
 
@@ -672,6 +687,7 @@ impl From<IoErr> for OurErr {
 ### Using api docs
 
 Talk about:
+
 * Finding functions
 * Looking at return types
 * Looking at args
@@ -699,9 +715,11 @@ rustup doc --std
 ### Lifetimes
 
 Talk about:
+
 * Structs having references
-* `'static`: As a trait bound, it means the type does not contain any non-static references.
-* Read up on: https://doc.rust-lang.org/nomicon/lifetimes.html
+* `'static`: As a trait bound, it means the type does not contain any non-static
+  references.
+* Read up on: <https://doc.rust-lang.org/nomicon/lifetimes.html>
 
 ```rust
 struct Application<'a> {
@@ -717,4 +735,3 @@ let app_name = "Blorp".to_string();
 let app = Application { name: &app_name };
 let config = Config { name: &app_name };
 ```
-

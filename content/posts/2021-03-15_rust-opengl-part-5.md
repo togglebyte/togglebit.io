@@ -11,7 +11,6 @@ Transforming instances when using instanced rendering doesn't work with
 Iterate over the instance positions and set them via `glBufferData` (which
 replaces the way of doing it by setting the uniform value).
 
-
 ## Shader
 
 Previously the shader had a `uniform` value called "transform" that was updated
@@ -21,8 +20,7 @@ With instanced rendering this changes to an input variable, since each instance
 will have its transform added to a `Vec<Matrix<f32>>` and finally written using
 `glBufferData`.
 
-
-```sl
+```glsl
 #version 330 core
 
 layout (location = 0) in vec3 position;
