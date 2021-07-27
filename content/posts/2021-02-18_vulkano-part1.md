@@ -13,11 +13,9 @@ Device is channel to a physical device (gpu).
 
 Command buffer executes all commands in one go, for efficiency.
 
-
-
 ## Setup
 
-```
+```toml
 [dependencies]
 vulkano = "0.20.0"
 vulkano-shaders = "0.20.0"
@@ -77,7 +75,7 @@ an iterator or data using either # `CpuAccessibleBuffer::from_iter` or
 `CpuAccessibleBuffer::from_data`.
 
 Note that the data has to be laid out correctly.
-Variables in GLSL 
+Variables in GLSL
 
 The `CpuAccessibleBuffer` can be used to both read and write data to and from
 the gpu.
@@ -142,7 +140,7 @@ finish
     .wait(None)
     .unwrap();
 
-// Data now contains the values from src, 
+// Data now contains the values from src,
 // read out of the dst buffer
 let data = *dst.read().unwrap();
 ```
@@ -182,7 +180,6 @@ void main() {
 }
 ```
 
-
 ```rust
 struct Data { val: u32 }
 struct MoreData { val: u32 }
@@ -192,33 +189,33 @@ fn main() {
     use vulkan::pipeline::ComputePipeline;
     use vulkan::descriptor::PipelineLayuotAbstract;
     use vulkan::descriptor::descriptor_set::PersistentDescriptorSet;
-    
+
     let data_buffer = CpuAccessibleBuffer::from_data(
         device.clone(),
         BufferUsage::all(),
         false, // don't cache data on the cpu
         Data { val: 0 }
     );
-    
+
     let more_data_buffer = CpuAccessibleBuffer::from_data(
         device.clone(),
         BufferUsage::all(),
         false, // don't cache data on the cpu
         MoreData { val: 0 }
     );
-    
+
     // load shader module
     let shader = cs::Shader::load(device.clone()).unwrap();
-    
+
     let pipeline = Arc::new(ComputePipeline::new(
         device.clone(),
         &shader.main_entry_point(),
         &(),    // SpecializationConstants
         None,   // Cache
     ));
-    
+
     let layout = compute_pipeline.layout().descriptor_set_layout(0).unwrap();
-    
+
     // note that all sets will be present at the time of execution (of the shader)
     // the set in the compute shader in this example is zero
     let set = Arc::new(
@@ -227,22 +224,21 @@ fn main() {
             .add_buffer(more_data_buffer.clone()).unwrap()
             .build().unwrap()
     );
-    
+
     let workgrup = [1, 1, 1]; // x, y and z
     let builder = AutoCommandBufferBuilder::new(device.clone(), queue.family()).unwrap();
     builder.dispatch(workgroup, pipeline.clone(), set.clone(), ()).unwrap();
     let command_buffer = builder.build().unwrap();
-    
+
     // execute compute shader
     let result = command_buffer.execute(queue.clone()).unwrap();
     result.then_signal_fence_and_flush().unwrap().wait(None).unwrap();
-    
+
     // access the data
     let buffer_data = &*buffer.read().unwrap();
 }
 
 ```
-
 
 ### Sources
 

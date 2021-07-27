@@ -32,13 +32,13 @@ let log_string = std::str::from_utf8(&log).unwarp();
 A uniform type in a shader is a bit like a global variable.
 It exists with the same value for all shaders.
 
-Calling `glGetUniformLocation` on a uniform that is never used will return `-1` 
+Calling `glGetUniformLocation` on a uniform that is never used will return `-1`
 even though the uniform is declared in a shader, as it will be removed if it's
 never used.
 
 Declaring and using a uniform in a shader:
 
-```sl
+```glsl
 uniform vec4 colourUniform;
 out vec4 colour;
 

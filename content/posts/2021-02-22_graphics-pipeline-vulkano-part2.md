@@ -21,7 +21,6 @@ vulkano::impl_vertex!(Vertex, position);
 
 A vertex buffer is just another buffer, eg a `CpuAccessibleBuffer`.
 
-
 ## Render pass
 
 Example of a simple render pass, supplying image format and no multi sampling:
@@ -31,7 +30,7 @@ let render_pass = Arc::new(vulkano::single_pass_renderpass!(device.clone(),
     attachments: {
         color: {
             load: Clear,  // clear the image when entering the render pass.
-            store: Store, // use Store here, if the image isn't temporary and 
+            store: Store, // use Store here, if the image isn't temporary and
                           // only used inside the render pass, in which case:
                           // use store: DontCare
             format: Format::R8G8B8A8Unorm,
@@ -54,9 +53,7 @@ Each added attachment should be included in the `color` section of the `pass`.
 
 Any operation outside of the draw call has to happen after `end_render_pass`,
 
-
 ## Framebuffer
-
 
 ## Swapchain
 
@@ -68,10 +65,9 @@ as a double buffer.
 Use the swapchain to draw to one of its images while the other is being
 presented.
 
+## Windows
 
-## Windows 
-
-Create a window as a surface: 
+Create a window as a surface:
 
 ```rust
 use vulkano_win::VkSurfaceBuild;

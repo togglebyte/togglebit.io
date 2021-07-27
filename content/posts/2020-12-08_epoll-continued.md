@@ -46,7 +46,7 @@ Example removing a file descriptor.
 
 ## Events
 
-TODO: finish this. 
+TODO: finish this.
 See `man epoll_ctl`
 
 Edge triggered: only triggers events when the underlying file descriptor
@@ -66,30 +66,35 @@ libc::EPOLLIN
 ```
 
 When passed to epoll, the selected file descriptor is registered for write events.
-When received from epoll through `epoll_wait` the file descriptor can be written to.
+When received from epoll through `epoll_wait` the file descriptor can be written
+to.
 
 ```rust
 libc::EPOLLOUT
 ```
 
 Urgent read
+
 ```rust
 libc::EPOLLPRI
 ```
 
 Error on the associated file descriptor.
-This is set by epoll. 
+This is set by epoll.
+
 ```rust
 libc::EPOLLERR
 ```
 
 Hang up the file descriptor.
+
 ```rust
 libc::EPOLLHUP
 ```
 
 Socket closed or writing half shut down.
 Useful to be notified whether the socket was closed or not: `EPOLLIN | EPOLLRDHUP`
+
 ```rust
 libc::EPOLLRDHUP
 ```
@@ -104,8 +109,9 @@ libc::EPOLLONESHOT      // Without one-shot it's possible to receive multiple ev
 
 Looks like it will only wake up the epoll file descriptor where this event's
 file descriptor was registered, if the event was registered with `EPOLLEXCLUSIVE`.
+
 ```rust
-libc::EPOLLEXCLUSIVE    // 
+libc::EPOLLEXCLUSIVE    //
 ```
 
 ## EventFd

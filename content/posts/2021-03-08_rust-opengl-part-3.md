@@ -31,8 +31,8 @@ is smaller than the surface.
 // Set the texture to repeat
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, 0x2901); // 0x2901 = GL_REPEAT
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, 0x2901); // 0x2901 = GL_REPEAT
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 0x2600); //GL_NEAREST 
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, 0x2600); //GL_NEAREST 
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 0x2600); //GL_NEAREST
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, 0x2600); //GL_NEAREST
 ```
 
 Create the texture image with `glTexImage2D`:
@@ -43,8 +43,8 @@ glTexImage2D(
     GL_TEXTURE_2D,
     0,
     0x1908,  // same as GL_RGBA
-    dimensions.width, 
-    dimensions.height, 
+    dimensions.width,
+    dimensions.height,
     0, // Apparently some legacy value
     GL_RGBA,
     GL_UNSIGNED_BYTE,
@@ -63,4 +63,3 @@ glTexParameteri     // integer
 glTexParameteriv    // integer array
 glTexParameteru     // unsigned integer
 ```
-

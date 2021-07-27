@@ -7,7 +7,7 @@ date = 2021-03-10
 
 Identity matrix
 
-```
+```txt
 ┌         ┐
 │ 1 0 0 0 │
 │ 0 1 0 0 │
@@ -26,12 +26,11 @@ Translating an object away from the origin, and the applying rotation, will then
 rotate the object around the origin in a wide arc, as opposed to applying
 rotation first, meaning the object will rotate around it self before moving.
 
-
 ## Scale matrix
 
 Scale / resize the object.
 
-```
+```txt
 ┌         ┐
 │ X 0 0 0 │
 │ 0 Y 0 0 │
@@ -44,7 +43,7 @@ Scale / resize the object.
 
 A translation matrix will move the object.
 
-```
+```txt
 ┌         ┐
 │ 1 0 0 X │
 │ 0 1 0 Y │
@@ -57,7 +56,6 @@ A translation matrix will move the object.
 
 NDC = Normalized Device Coordinates (-1,-1 to 1,1)
 
-
 ## View matrix and projection matrix
 
 The view matrix is where in the world the user is looking.
@@ -66,7 +64,6 @@ A view matrix can be considered a point in space.
 The view and projection matrix together could be thought of as an inverse
 camera, where the view matrix is the cameras location in space, and the
 projection matrix represents the zoom / focal length.
-
 
 ## Putting this together
 
@@ -89,8 +86,8 @@ let min_x = -10.0;
 let max_x = 10.0;
 //... Declare `max` for all other axis
 let projection = Matrix4::new_orthographic(
-    min_x, 
-    max_x, 
+    min_x,
+    max_x,
     min_y,
     max_y,
     min_z,
