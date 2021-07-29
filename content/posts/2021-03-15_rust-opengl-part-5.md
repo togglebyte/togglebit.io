@@ -74,14 +74,14 @@ glVertexAttribPointer(
     mat_size,
     (0 * attrib_size) as *const _,
 );
-// ... Repeat until three more times
+// ... Repeat three more times
 glVertexAttribPointer(
     6,
     4,
     GL_FLOAT,
     transpose,
     mat_size,
-    (0 * attrib_size) as *const _,
+    (3 * attrib_size) as *const _,
 );
 
 
