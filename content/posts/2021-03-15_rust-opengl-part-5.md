@@ -104,11 +104,13 @@ During the rendering process create a `Vec<Matrix<f32>>` of all the positions,
 then load the data with
 
 ```rust
-glBufferData(
-    GL_ARRAY_BUFFER,
-    (size_of::<Matrix4<f32>>() * positions.len()) as isize,
-    positions.as_ptr().cast(),
-    GL_STATIC_DRAW
+const QUAD: [Vertex; 4] = ...;
+
+glDrawArraysInstanced(
+    GL_TRIANGLE_STRIP,
+    0,
+    QUAD.len() as i32,
+    number_of_instances,
 );
 
 // .. View projection etc.
