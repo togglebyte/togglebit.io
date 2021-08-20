@@ -3,7 +3,8 @@ title = "Learning OpenGL with Rust part 1 (setup)"
 date = 2021-03-03
 +++
 
-There are notes taken while learning OpenGL.
+These are notes taken while learning OpenGL on stream.
+
 If you are looking for a tutorial on OpenGL in Rust try this: 
 [learn opengl](https://github.com/rust-tutorials/learn-opengl)
 
