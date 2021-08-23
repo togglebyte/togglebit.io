@@ -15,6 +15,7 @@ This is by no means complete, this is a draft for a possible upcoming jam.
 
 * Terminal based game
 * Stepping outside of your comfort zone
+* Use any language you want
 * Code has to be included somehow
 * Run on a VM
 * No executables
