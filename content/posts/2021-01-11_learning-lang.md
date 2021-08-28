@@ -21,6 +21,7 @@ If you are learning to program from scratch.
 * [Crust of Rust by Jon Gjengset](https://www.youtube.com/watch?v=rAl-9HwD858&list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa)
 * [Doug Milford (3d graphics)](https://www.youtube.com/channel/UCmBgC0JN41HjyjAXfkdkp-Q)
 * [Easy Rust](https://www.youtube.com/playlist?list=PLfllocyHVgsRwLkTAhG0E-2QxCf-ozBkk)
+* [Rust Book in video form](https://www.youtube.com/watch?v=OX9HJsJUDxA&list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8)
 
 ### Starter projects
 
