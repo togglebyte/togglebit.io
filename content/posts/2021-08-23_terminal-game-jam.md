@@ -1,5 +1,5 @@
 +++
-title = "Terminal Game Jam"
+title = "Terminal Code Jam"
 date = 2021-08-23
 +++
 
