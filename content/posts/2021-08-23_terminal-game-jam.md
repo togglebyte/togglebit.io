@@ -3,8 +3,6 @@ title = "Terminal Code Jam"
 date = 2021-08-23
 +++
 
-This is by no means complete, this is a draft for a possible upcoming jam.
-
 ### Start: 04 Sept 08:00 UTC / 8am UTC
 ### End  : 06 Sept 08:00 UTC / 8am UTC
 
