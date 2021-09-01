@@ -20,7 +20,7 @@ everyone should have a good time doing so.
 
 ## Rules
 - No executables: Only source code that can be compiled / interpreted
-- Must run on Linux
+- Must run on Linux in Alacritty
 - Use of third party libraries is allowed
 
 ## Name suggestions:
@@ -31,7 +31,6 @@ everyone should have a good time doing so.
 
 ## Notes
 
-* Terminal based game
 * Stepping outside of your comfort zone
 * Use any language you want
 * Code has to be included somehow
