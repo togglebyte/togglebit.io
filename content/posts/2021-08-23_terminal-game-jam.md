@@ -13,6 +13,7 @@ This is by no means complete, this is a draft for a possible upcoming jam.
 - Language: Any language can be used to develop the submission
 - Project has to have a README file (note in here if you don't want the code on
   stream)
+- Your code will be running on a small DO droplet
   
 Projects will be judged based on their creativity and relevance to the theme announced.
 The goal is to have fun and enjoy creating something, 
