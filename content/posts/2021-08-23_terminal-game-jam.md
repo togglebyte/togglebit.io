@@ -9,7 +9,6 @@ date = 2021-08-23
 * [Current time in UTC](https://time.is/UTC)
 * [Discord](https://discord.gg/qtyDMat)
 
-
 ## Overview
 
 - Length: 2 days (Weekend)
@@ -19,6 +18,20 @@ date = 2021-08-23
 - Project has to have a README file (note in here if you don't want the code on
   stream)
 - Your code will be running on a small DO droplet
+
+## How do I join the jam?
+
+1. Wait for the theme to be announced
+2. Write the code
+3. Commit the code to a public repository somewhere
+4. Post a link to your submission:
+    * On the Discord in the jam channel
+    * In a PM to me on Discord
+    * In a PM to me on Twitch
+ 
+**Note:** if you want to be anonymous create a throw-away account on
+[gitlab.com](https://gitlab.com) / [github.com](https://github.com), and make
+sure you send the submission directly to me
 
 ## System spec
 - Ubuntu 20.04 LTS x64
