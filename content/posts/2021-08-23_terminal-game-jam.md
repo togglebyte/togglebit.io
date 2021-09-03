@@ -25,7 +25,8 @@ date = 2021-08-23
 
 1. Wait for the theme to be announced
 2. Write the code
-3. Commit the code to a public repository somewhere
+3. Commit the code to a public repository somewhere (Dnaka has kindly provided
+   us with [https://marmelade.dnaka91.rocks/](https://marmelade.dnaka91.rocks/)
 4. Post a link to your submission:
     * On the Discord in the jam channel
     * In a PM to me on Discord
