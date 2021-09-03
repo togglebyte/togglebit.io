@@ -17,8 +17,8 @@ date = 2021-08-23
 - Judged On: Monday stream
 - Themes: It has to be a topic anyone can interpret.
 - Language: Any language can be used to develop the submission
-- Project has to have a README file (note in here if you don't want the code on
-  stream)
+- Project has to have a README file explaining what it does (note in here if you don't want the code on
+  stream).
 - Your code will be running on a small DO droplet
 
 ## How do I join the jam?
