@@ -11,6 +11,12 @@ date = 2021-08-23
 * [Current time in UTC](https://time.is/UTC)
 * [Discord](https://discord.gg/qtyDMat)
 
+## Important note: 
+
+Even though the URL has the word "game" in it, your submission doesn't have to be a game!
+The idea started out as a game jam but quickly changed to be more generic, however the url was already posted
+on various places.
+
 ## Overview
 
 - Length: 2 days (Weekend)
