@@ -20,8 +20,8 @@ on various places.
 ## Overview
 
 - Length: 2 days (Weekend)
-- Judged On: Monday stream
-- Themes: It has to be a topic anyone can interpret.
+- Voting: Starts Monday 6th of Sept, ends Wednesday 8th of Sept
+- Theme: Pain and Suffering
 - Language: Any language can be used to develop the submission
 - Project has to have a README file explaining what it does (note in here if you don't want the code on
   stream).
