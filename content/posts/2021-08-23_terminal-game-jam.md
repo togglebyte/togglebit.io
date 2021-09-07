@@ -68,4 +68,4 @@ In the process of setting up a private Gitea server
 ## Winner
 * Anyone on the Discord can vote
 * Voting will happen on Discord on Monday, and the "winner" will be declared
-  on the following Wednesday (8th of Sept)
+  on the following Wednesday (8th of Sept), at 08:00 UTC (8 a.m UTC)
