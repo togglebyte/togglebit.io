@@ -55,7 +55,9 @@ let result = mask & value;
 assert_eq!(result, 0b00000101);
 ```
 
-### Shifting twice
+### Shifting twice 
+
+Clearing half a byte by shifting all bytes to the left and then back.
 
 ```rust
 let value: u8 = 0b1110101;
