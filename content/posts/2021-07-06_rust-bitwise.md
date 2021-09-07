@@ -62,3 +62,5 @@ let value: u8 = 0b1110101;
 let result = value << 4 >> 4;
 assert_eq!(result, 0b00000101);
 ```
+
+To clear the other half, change `<< 4 >> 4` to `>> 4 << 4`.
