@@ -46,6 +46,8 @@ Source: [https://nicolwk.medium.com/bitwise-operations-cheat-sheet-743e09aec5b5]
 
 ### Clearing bits
 
+Note that the following examples produce the same asm.
+
 #### Bit mask
 
 ```rust
