@@ -5,6 +5,8 @@ date = 2021-08-23
 
 ## THEME: Pain and suffering
 
+## Winner: ModProg with [Language Guesser](https://github.com/ModProg/language-guesser)
+
 ### Start: 04 Sept 08:00 UTC / 8am UTC
 ### End  : 06 Sept 08:00 UTC / 8am UTC
 
