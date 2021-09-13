@@ -5,6 +5,7 @@ date = 2021-09-13
 
 Elision rules are as follows:
 
+### 1. 
 Each elided lifetime in input position becomes a distinct lifetime parameter.
 
 ```rust
@@ -13,8 +14,8 @@ pub fn do_something<'a: 'b, 'b>(input: &'a str, other_input: &'b str) -> &'a str
 }
 ```
 
-If there is exactly one input lifetime position (elided or not), 
-that lifetime is assigned to all elided output lifetimes.
+### 2. 
+If there is exactly one input lifetime position (elided or not), that lifetime is assigned to all elided output lifetimes.
 
 ```rust
 pub fn first_do_something(input: &str) -> (&str, &str) {
@@ -22,9 +23,8 @@ pub fn first_do_something(input: &str) -> (&str, &str) {
 }
 ```
 
-If there are multiple input lifetime positions, but one of them is 
-&self or &mut self, the lifetime of self is assigned to all 
-elided output lifetimes.
+### 3. 
+If there are multiple input lifetime positions, but one of them is &self or &mut self, the lifetime of self is assigned to all elided output lifetimes.
 
 
 ```rust
@@ -39,6 +39,7 @@ impl Config {
 }
 ```
 
+### 4.
 Otherwise, it is an error to elide an output lifetime.
 
 
