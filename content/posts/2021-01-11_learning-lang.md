@@ -57,3 +57,7 @@ If you are learning to program from scratch.
 ## Kotlin
 
 * [Get started with Kotlin](https://kotlinlang.org/docs/getting-started.html)
+
+## Swift
+
+* [Swift book](https://docs.swift.org/swift-book/)
