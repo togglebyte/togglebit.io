@@ -47,3 +47,13 @@ If you are learning to program from scratch.
 ## Python
 
 * [https://docs.python.org/3/tutorial/index.html](https://docs.python.org/3/tutorial/index.html)
+
+## Go
+
+* [Go 101](https://go101.org/article/101.html)
+* [A Tour of Go](https://tour.golang.org/welcome/1)
+
+
+## Kotlin
+
+* [Get started with Kotlin](https://kotlinlang.org/docs/getting-started.html)
