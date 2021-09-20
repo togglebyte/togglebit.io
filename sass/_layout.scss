@@ -60,10 +60,18 @@ a {
 
 
 section {
-    padding: 0 10rem;
+    padding: 0;
 
     @media only screen and (max-width: 600px) {
         padding: 0;
+    }
+
+    @media only screen and (min-width: 900px) {
+        padding: 0 5rem;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        padding: 0 10rem;
     }
 
 }
