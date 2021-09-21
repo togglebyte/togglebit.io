@@ -43,4 +43,5 @@ impl Config {
 Otherwise, it is an error to elide an output lifetime.
 
 
-[Source](https://doc.rust-lang.org/nomicon/lifetime-elision.html)
+* [Source](https://doc.rust-lang.org/nomicon/lifetime-elision.html)
+* [Common lifetime misconceptions](https://github.com/pretzelhammer/rust-blog/blob/master/posts/common-rust-lifetime-misconceptions.md)
