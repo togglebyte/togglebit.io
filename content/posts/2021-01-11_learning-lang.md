@@ -61,3 +61,7 @@ If you are learning to program from scratch.
 ## Swift
 
 * [Swift book](https://docs.swift.org/swift-book/)
+
+## Scala
+
+* [Scala book](https://docs.scala-lang.org/overviews/scala-book/introduction.html)
