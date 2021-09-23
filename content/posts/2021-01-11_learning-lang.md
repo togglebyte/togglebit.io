@@ -29,6 +29,10 @@ If you are learning to program from scratch.
 * [https://github.com/tuvtran/project-based-learning](https://github.com/tuvtran/project-based-learning)
 * [https://github.com/danistefanovic/build-your-own-x](https://github.com/danistefanovic/build-your-own-x)
 
+### Learn by doing
+
+* [Rustlings](https://github.com/rust-lang/rustlings)
+
 ## C
 
 * [https://www.learn-c.org/](https://www.learn-c.org/)
