@@ -32,6 +32,7 @@ If you are learning to program from scratch.
 ### Learn by doing
 
 * [Rustlings](https://github.com/rust-lang/rustlings)
+* [Macros](https://github.com/jonhoo/proc-macro-workshop)
 
 ## C
 
