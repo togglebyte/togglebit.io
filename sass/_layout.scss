@@ -157,8 +157,12 @@ pre > code {
     display: block;
     color: #336699;
 
-    &:hover {
+    &:nth-child(odd) {
         background: #2b303b;
+    }
+
+    &:hover {
+        background: rgb(46, 53, 68);
     }
 
     div {
