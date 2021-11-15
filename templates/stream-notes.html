@@ -1,18 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}{{ section.title }}{% endblock title %}
-{% block content %}
-<section class="header">
-    <h1 class="blog-title">
-        {{ section.title }}
-    </h1>
-    <ul>
-        <li><a href="https://github.com/togglebyte/" target="_blank">Github</a></li>
-        <li><a href="https://discord.gg/qtyDMat" target="_blank">Discord</a></li>
-        <li><a href="https://www.twitch.tv/togglebit/" target="_blank">Twitch</a></li>
-    </ul>
-</section>
-
+{% block body %}
 <section>
     <small>Stream notes</small>
 
@@ -28,4 +17,4 @@
     </ul>
 </section>
 
-{% endblock content %}
+{% endblock body %}

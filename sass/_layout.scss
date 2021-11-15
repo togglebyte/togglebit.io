@@ -151,3 +151,17 @@ pre > code {
         }
     }
 }
+
+.link-box {
+    padding: 1rem;
+    display: block;
+    color: #336699;
+
+    &:hover {
+        background: #2b303b;
+    }
+
+    div {
+        color: white;
+    }
+}
