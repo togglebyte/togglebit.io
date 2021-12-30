@@ -42,11 +42,11 @@ If you are learning to program from scratch.
 * [Ziglings](https://github.com/ratfactor/ziglings)
 * [Zig by example](https://zig-by-example.github.io/)
 
-For experienced developers the [standard
+*For experienced developers the [standard
 library](https://github.com/ziglang/zig/tree/master/lib/std) can be a learning
 resource.
 Information on [how to read the standard library source
-code](https://github.com/ziglang/zig/wiki/How-to-read-the-standard-library-source-code).
+code](https://github.com/ziglang/zig/wiki/How-to-read-the-standard-library-source-code).*
 
 ## C
 
