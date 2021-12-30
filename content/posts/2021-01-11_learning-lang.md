@@ -40,6 +40,7 @@ If you are learning to program from scratch.
 
 * [Zig learn](https://ziglearn.org/)
 * [Ziglings](https://github.com/ratfactor/ziglings)
+* [Zig by example](https://zig-by-example.github.io/)
 
 ## C
 
