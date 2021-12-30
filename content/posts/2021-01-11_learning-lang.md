@@ -34,6 +34,13 @@ If you are learning to program from scratch.
 * [Rustlings](https://github.com/rust-lang/rustlings)
 * [Macros](https://github.com/jonhoo/proc-macro-workshop)
 
+## Zig
+
+### Reading 
+
+* [Zig learn](https://ziglearn.org/)
+* [Ziglings](https://github.com/ratfactor/ziglings)
+
 ## C
 
 * [https://www.learn-c.org/](https://www.learn-c.org/)
