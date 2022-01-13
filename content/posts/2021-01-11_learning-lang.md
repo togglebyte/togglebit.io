@@ -22,6 +22,7 @@ If you are learning to program from scratch.
 * [Doug Milford (3d graphics)](https://www.youtube.com/channel/UCmBgC0JN41HjyjAXfkdkp-Q)
 * [Easy Rust](https://www.youtube.com/playlist?list=PLfllocyHVgsRwLkTAhG0E-2QxCf-ozBkk)
 * [Rust Book in video form](https://www.youtube.com/watch?v=OX9HJsJUDxA&list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8)
+* [Introduction to programming with Rust](https://www.youtube.com/rhymu8354)
 
 ### Starter projects
 
