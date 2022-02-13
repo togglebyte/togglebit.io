@@ -6,6 +6,7 @@ date = 2021-07-05
 ## Step 1
 
 Run `:packadd termdebug` inside vim/nvim.
+This is not some third party package manager, `packadd` is built into vim.
 
 This has to be done for every instance, so if you want this to always be enabled
 then add this to your vimrc.
