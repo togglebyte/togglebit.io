@@ -1,6 +1,7 @@
 +++
 title = "An open letter to Reddit"
 date = 2021-05-07
+draft = true
 +++
 
 This page is available in the app.
