@@ -1,6 +1,7 @@
 +++
 title = "Learning OpenGL with Rust part 2 (shaders)"
 date = 2021-03-08
+draft = true
 +++
 
 See the [previous post](@/posts/2021-03-03_rust-opengl-part-1.md) for setup

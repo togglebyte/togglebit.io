@@ -1,6 +1,7 @@
 +++
 title = "Learning Rust by building a server client chat"
 date = 2021-06-11
+draft = true
 +++
 
 ## Overview

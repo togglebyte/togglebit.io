@@ -1,6 +1,7 @@
 +++
 title = "Project ideas"
 date = 2021-11-09
+draft = true
 +++
 
 ## URL shortener

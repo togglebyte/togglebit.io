@@ -1,6 +1,7 @@
 +++
 title = "Learning OpenGL with Rust part 3 (textures)"
 date = 2021-03-09
+draft = true
 +++
 
 ## Creating a texture

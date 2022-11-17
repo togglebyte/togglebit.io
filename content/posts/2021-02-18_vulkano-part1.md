@@ -1,6 +1,7 @@
 +++
 title = "Vulkano: setup"
 date = 2021-02-18
+draft = true
 +++
 
 This are incomplete notes.

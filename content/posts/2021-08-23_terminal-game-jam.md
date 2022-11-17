@@ -1,6 +1,7 @@
 +++
 title = "Terminal Code Jam"
 date = 2021-08-23
+draft = true
 +++
 
 ## THEME: Pain and suffering

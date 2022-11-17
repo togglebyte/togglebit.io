@@ -1,6 +1,7 @@
 +++
 title = "Learning OpenGL with Rust part 1 (setup)"
 date = 2021-03-03
+draft = true
 +++
 
 These are notes taken while learning OpenGL on stream.

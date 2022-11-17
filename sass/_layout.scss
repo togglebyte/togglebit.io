@@ -11,6 +11,12 @@ h1 {
     margin: 0;
 }
 
+h2 {
+    background: #272c2f;
+    padding: 4px;
+    margin: 4px 0;
+}
+
 a {
     text-decoration: none;
     color: white;
@@ -168,4 +174,13 @@ pre > code {
     div {
         color: white;
     }
+}
+
+// -----------------------------------------------------------------------------
+//     - Notes -
+// -----------------------------------------------------------------------------
+.note {
+    display: flex;
+    background: #4c4c59;
+    margin: 1rem 0;
 }

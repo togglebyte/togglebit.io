@@ -1,6 +1,7 @@
 +++
 title = "Learning OpenGL with Rust part 4 (transformations)"
 date = 2021-03-10
+draft = true
 +++
 
 ## Transformation matrix

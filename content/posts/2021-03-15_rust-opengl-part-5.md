@@ -1,6 +1,7 @@
 +++
 title = "Learning OpenGL with Rust part 5 (instanced)"
 date = 2021-03-15
+draft = true
 +++
 
 ## Overview

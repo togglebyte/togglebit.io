@@ -1,6 +1,7 @@
 +++
 title = "Vulkano: Graphics pipeline"
 date = 2021-02-22
+draft = true
 +++
 
 Before reading this, it is useful to have read the [previous post](@/posts/2021-02-18_vulkano-part1.md).
