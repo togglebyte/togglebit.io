@@ -15,6 +15,8 @@ h2 {
     background: #272c2f;
     padding: 4px;
     margin: 4px 0;
+    display: flex;
+    align-items: center;
 }
 
 a {
@@ -183,4 +185,13 @@ pre > code {
     display: flex;
     background: #4c4c59;
     margin: 1rem 0;
+}
+
+// -----------------------------------------------------------------------------
+//   - Zola -
+// -----------------------------------------------------------------------------
+.blog-body .zola-anchor {
+    text-decoration: none;
+    padding: 0 1rem 0 0.5rem;
+    font-size: 1rem;
 }
