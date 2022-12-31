@@ -3,6 +3,7 @@ title = "Rust lifetime rules"
 date = 2021-09-13
 +++
 
+
 Elision rules are as follows:
 
 ## 1. 
@@ -41,6 +42,18 @@ impl Config {
 
 ## 4.
 Otherwise, it is an error to elide an output lifetime.
+
+{% note() %}
+Given the following:
+```rust
+fn lifetimes<'a: 'b, 'b>(a: &'a str, b: &'b str) {}
+```
+
+Read this as "`'a` will live for at least as long as `'b`, rather than `'a` has
+to outlive `'b`. It's a small distinction but a relevant one.
+
+See: [lifetime coercion](https://doc.rust-lang.org/rust-by-example/scope/lifetime/lifetime_coercion.html)  
+{% end %}
 
 
 * [Source](https://doc.rust-lang.org/nomicon/lifetime-elision.html)
