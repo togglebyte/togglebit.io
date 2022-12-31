@@ -1,6 +1,6 @@
 +++
 title = "Building a virtual machine"
-draft = false
+draft = true
 +++
 
 ## Overview and "why"
