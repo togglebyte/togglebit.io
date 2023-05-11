@@ -89,6 +89,7 @@ section {
 // -----------------------------------------------------------------------------
 pre {
     overflow: auto;
+    width: 100%;
 }
 
 code {
@@ -185,6 +186,10 @@ pre > code {
     display: flex;
     background: #4c4c59;
     margin: 1rem 0;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    padding: 0 1rem;
+    border-radius: 4px;
 }
 
 // -----------------------------------------------------------------------------
