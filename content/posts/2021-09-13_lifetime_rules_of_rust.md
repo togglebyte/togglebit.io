@@ -9,9 +9,12 @@ Elision rules are as follows:
 ## 1. 
 Each elided lifetime in input position becomes a distinct lifetime parameter.
 
+Even though there are two inputs that have different lifetimes according to the
+rules of lifetime elision, it is safe to elide the lifetime here as no reference
+is returned.
+
 ```rust
-pub fn do_something<'a: 'b, 'b>(input: &'a str, other_input: &'b str) -> &'a str {
-    input
+pub fn do_something(input: &str, other_input: &str) {
 }
 ```
 
