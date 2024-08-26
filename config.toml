@@ -5,7 +5,7 @@ base_url = "https://togglebit.io"
 compile_sass = true
 
 # When set to "true", a feed is automatically generated.
-generate_feed = true
+generate_feeds = true
 title = "togglebit.io"
 
 # Whether to build a search index to be used later on by a JavaScript library
