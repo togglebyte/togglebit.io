@@ -119,5 +119,5 @@ Note the `registry` attribute.
 
 ## Sources
 
-* https://doc.rust-lang.org/cargo/reference/running-a-registry.html
-* https://github.com/integer32llc/margo
+* [https://doc.rust-lang.org/cargo/reference/running-a-registry.html](https://doc.rust-lang.org/cargo/reference/running-a-registry.html)
+* [https://github.com/integer32llc/margo](https://github.com/integer32llc/margo)
