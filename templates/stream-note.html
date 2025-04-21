@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} {{ page.title }}{% endblock title %}
+{% block title %} 
+    {% if page.title %}
+    {{ page.title }} |
+    {% endif %}
+{% endblock title %}
 
 {% block body %}
 

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ section.title }}{% endblock title %}
+{% block title %}
+    {% if section.title %}
+    {{ section.title }} |
+    {% endif %}
+{% endblock title %}
 {% block content %}
 <section>
     <!-- <a href="/useful/">Useful bits</a> | --> 
