@@ -16,6 +16,10 @@ between 06:00 and 13:00.
 As a result we got so much done we decided to do it again the next day, but for
 a shorter period, so we turned it off between 06:00 and 11:00.
 
+For me this runs from Saturday to Sunday, however if you wanna do this and those
+days doesn't work then pick two other consecutive days, and make the second day
+shorter.
+
 The TL;DR is this: 
 Turn off your modem / router / fibre-magic-box / FrizBox for a few hours and log your
 productivity.
@@ -24,10 +28,12 @@ The goal of this is just a bit of fun but it can also help with getting things d
 
 ## The rules
 
+* No internet connection for a dedicated time slot during two consecutive days
+
 ### Optional rules
 
-* Allow a singular device for information lookup (e.g a phone with mobile data)
-* Don't allow any screen time
+* Allow a singular device for information lookup (e.g a phone with mobile data).
+* Don't allow any screen time whatsoever.
  
 ## Run time
 
