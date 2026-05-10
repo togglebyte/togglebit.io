@@ -43,7 +43,7 @@ This challenge runs for two days (feel free to repeat it).
 - Day 2: five hours
 
 Write down the tasks you have worked on or even finished during this
-time window and post your summary each day on your Discord
+time window and post your summary each day on our Discord
 
 The format of the post:
 
