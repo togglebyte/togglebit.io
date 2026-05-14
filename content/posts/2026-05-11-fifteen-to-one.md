@@ -16,7 +16,7 @@ the passing, and he blurted out "fifteen minutes". Thinking it was a rather
 funny (because of how he said it) and definitive answer it kind of stuck with
 me.
 
-Fast forward a few days and it's Sunday morning and we are doing the No-Internet
+Fast forward a few days and it's Sunday morning and we are doing the [No-Internet](@/conetnt/posts/2026-03-23-productivity-challenge.md)
 challenge again, which is a perfect time to sit down and write, and I asked the
 wife if she was up for another challenge.
 
