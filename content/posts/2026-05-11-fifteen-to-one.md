@@ -1,7 +1,7 @@
 +++
 title = "Fifteen to one"
 date = 2026-05-10
-draft = true
+draft = false
 +++
 
 ## Intro 
@@ -27,9 +27,9 @@ The whole family has adopted the No-Internet one without too many complaints so 
 * You can sit for at most 15 minutes at a time.
 * After 15 minutes you have to stand up and perform a task before you sit down
   again.
-* Repeat this for [TBC] hours
+* Repeat this for seven hours
 
-What qualifies as a task is up to you but I'll give a few examples: 
+What qualifies as a task is up to you but I'll share a few examples: 
 
 * Clear something away / put something back where it belongs
 * Empty the dish washer
@@ -42,25 +42,16 @@ you don't sit down while you perform it.
 
 ## Run time
 
-This challenge runs for [TBC] days
-
-- Day #: [TBC] hours 
+This challenge runs for one day
 
 Feel free to post your summary each day on our Discord!
 
 The format of the post:
 
 ```
-Day #
+Challenge: 15-1
 Did you manage: yes / no (only answer "no" if you gave up)
 Did you feel productive yes / no
-```
-
-E.g
-```
-Day 1
-Did you manage the entire time: yes
-Did you feel productive: yes
 ```
 
 Good luck!
